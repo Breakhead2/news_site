@@ -1,0 +1,46 @@
+.header{
+    background-color: $bcg_color;
+}
+.header .container .logo{
+    font-size: 68px;
+    color: white;
+}
+.header .container .admin{
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white;
+    margin-left: 10px;
+    border-bottom: 1px solid $second_color;
+}
+.header .container .desc{
+    color: $second_color;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.header .container .desc span {
+    font-weight: bold;
+    font-size: 20px;
+}
+.header .container .menu {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    background: $bcg_menu;
+}
+.right{
+    display: flex;
+}
+.left{
+    display: flex;
+}
+.menu__link{
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 50px;
+    padding: 0 20px;
+    position: relative;
+    transition: background-color linear 0.3s;
+}
+.menu__link:hover{
+    background-color: $hover_color;
+}

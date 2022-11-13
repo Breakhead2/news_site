@@ -1,0 +1,45 @@
+/* start section login and register styles */
+
+.container .login{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+.form__login{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+.form__login .form__group{
+    display: flex;
+    flex-direction: column;
+}
+.form__login .form__group input{
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 8px 16px;
+    font-size: inherit;
+    background-color: $second_color;
+    margin-bottom: 15px;
+}
+.form__check .form__check__input{
+    margin-right: 8px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #ccc;
+}
+.form__submit{
+    margin-top: 15px;
+}
+.form__submit .form__submit__btn{
+    font-size: inherit;
+    width: 100%;
+    padding: 10px 16px;
+    color: #ffffff;
+    background-color: $bcg_menu;
+    transition: background-color linear 0.3s;
+}
+.form__submit .form__submit__btn:hover{
+    background-color: $hover_color;
+}

@@ -1,0 +1,21 @@
+.footer{
+    background-color: $bcg_color;
+    padding: 30px 0;
+}
+.footer .container{
+    display: flex;
+    justify-content: space-between;
+    color: #999;
+    letter-spacing: 1px;
+}
+.footer .container .copy{
+    font-size: 20px;
+}
+.footer .container .creator{
+    color: #999;
+    transition: color linear 0.3s;
+}
+.footer .container .creator:hover{
+    color: $hover_color;
+    cursor: pointer;
+}

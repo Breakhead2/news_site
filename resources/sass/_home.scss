@@ -1,0 +1,107 @@
+/* section home start */
+
+.heading {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 25px;
+    color: #333;
+}
+.articles__box{
+    margin: 25px auto;
+    max-width: 800px;
+}
+.article__item{
+    display: flex;
+    flex-direction: column;
+}
+.article__item__heading{
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color linear 0.3s;
+}
+.article__item__heading:hover{
+    color: $hover_color;
+}
+.up{
+    margin-bottom: 15px;
+}
+.under_up{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.under_up .date_of_post{
+    color: $gray;
+    font-size: 18px;
+}
+.under_up .date_of_post .date{
+    color: #000;
+}
+.under_up .category{
+    color: $gray;
+}
+.under_up .category .category_name{
+    margin-left: 8px;
+    color: #000;
+    cursor: pointer;
+    transition: color linear 0.3s;
+}
+.under_up .category .category_name:hover{
+    color: $hover_color;
+}
+.article{
+    height: 195px;
+    border-bottom: 1px solid $gray;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.article .img__container{
+    width: 250px;
+    height: 175px;
+    border: 5px solid #e6e6e6;
+    margin-right: 20px;
+    float: left;
+}
+.article .img__container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.article .article__info{
+    display: grid;
+    grid-template-rows: 1fr auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    height: 100%;
+}
+.article .article__info .continue{
+    text-align: right;
+    padding: 12px 28px;
+    color: white;
+    background-color: $bcg_menu;
+    justify-self: end;
+    transition: background-color linear 0.3s;
+}
+.article .article__info .continue:hover{
+    background-color: $hover_color;
+}
+
+.want_more{
+    background-color: $gray;
+    height: 200px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+.want_more__link{
+    padding: 12px 28px;
+    color: white;
+    background-color: $bcg_menu;
+    transition: background-color linear 0.3s;
+}
+.want_more__link:hover{
+    background-color: $hover_color;
+}
+
+/* section home end */
