@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad912e53-630d-4ec1-a35e-d0a1000095c3" name="Changes" comment="" />
+    <list default="true" id="ad912e53-630d-4ec1-a35e-d0a1000095c3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +20,9 @@
         <option value="Sass File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -123,6 +128,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="2HMsakqm5nF0XiDylZfKfoGVPSN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -156,7 +162,7 @@
       <workItem from="1668243632085" duration="2182000" />
       <workItem from="1668248687511" duration="4827000" />
       <workItem from="1668339467792" duration="7227000" />
-      <workItem from="1668355616825" duration="12380000" />
+      <workItem from="1668355616825" duration="12708000" />
     </task>
     <servers />
   </component>
