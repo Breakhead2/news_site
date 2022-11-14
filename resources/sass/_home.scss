@@ -17,12 +17,10 @@
 .article__item__heading{
     font-size: 28px;
     font-weight: bold;
-    cursor: pointer;
     transition: color linear 0.3s;
     color: $heading_color;
-}
-.article__item__heading:hover{
-    color: $hover_color;
+    margin-bottom: 10px;
+    display: block;
 }
 .up{
     margin-bottom: 15px;
@@ -72,9 +70,11 @@
 .article .article__info{
     display: grid;
     grid-template-rows: 1fr auto;
+    height: 100%;
+}
+.article__desc{
     font-family: $second-font-family;
     font-size: 16px;
-    height: 100%;
 }
 .article .article__info .continue{
     text-align: right;

@@ -27,7 +27,7 @@ class NewsController extends Controller
        ]);
    }
 
-   public function show($slug, $id, News $news)
+   public function show($slug, $id, News $news, Categories $categories)
    {
        $article = $news->getOneNews($id);
 
@@ -35,7 +35,8 @@ class NewsController extends Controller
 
        return view('news.article', [
            'title' => $article['title'],
-           'article' => $article
+           'article' => $article,
+           'categories' => $categories->getAllCategories()
        ]);
    }
 

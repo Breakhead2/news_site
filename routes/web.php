@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{AboutController,
+    Admin\IndexController,
     Auth\LoginController,
     Auth\RegisterController,
     HomeController,
@@ -21,4 +22,14 @@ Route::name('news.')
         Route::get('/', [NewsController::class, 'index'])->name('index');
         Route::get('/{slug}', [NewsController::class, 'index'])->name('category');
         Route::get('/{slug}/{id}', [NewsController::class, 'show'])->name('show');
+    });
+
+//Админка
+Route::name('admin.')
+    ->prefix('admin')
+    ->group(function (){
+        Route::get('/', [IndexController::class, 'index'])->name('index');
+        Route::get('/create', [IndexController::class, 'create'])->name('create');
+        Route::get('/download_image', [IndexController::class, 'create'])->name('downloadImage');
+        Route::get('/download_text', [IndexController::class, 'create'])->name('downloadText');
     });

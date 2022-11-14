@@ -1,5 +1,6 @@
+/* section news start */
 .news{
-    margin: 25px 0;
+    margin: 35px 0;
     display: flex;
 }
 .categories__block{
@@ -17,4 +18,26 @@
 }
 .news__block{
    flex: 1;
+}
+/* section news end */
+
+/* section article start */
+.article__block{
+    margin: 35px 0;
+}
+.article__block .article__top .image__container{
+
+}
+.article__block .article__top .image__container img{
+    width: 100%;
+    height: 175px;
+    object-fit: cover;
+    border: 5px solid #e6e6e6;
+    margin-bottom: 25px;
+}
+.article__item__head{
+    font-size: 28px;
+    font-weight: bold;
+    color: $heading_color;
+    margin: 20px 0;
 }

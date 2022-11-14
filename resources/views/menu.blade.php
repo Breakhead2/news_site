@@ -5,7 +5,7 @@
         <a href="{{ route('about') }}" class="menu__link">О нас</a>
     </div>
     <div class="right">
-        <a href="#" class="menu__link">Админка</a>
+        <a href="{{ route('admin.index') }}" class="menu__link">Админка</a>
         <a href="{{ route('login') }}" class="menu__link">Войти</a>
         <a href="{{ route('register') }}" class="menu__link">Регистрация</a>
     </div>
