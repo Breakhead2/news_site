@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;700&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
-    <link type="Image/x-icon" href="icon.ico" rel="icon">
+    <link type="Image/x-icon" href="/icon.ico" rel="icon">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

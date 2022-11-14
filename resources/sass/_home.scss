@@ -17,10 +17,20 @@
 .article__item__heading{
     font-size: 28px;
     font-weight: bold;
+    color: $heading_color;
+    margin-bottom: 10px;
+    display: block;
+}
+.article__item__link{
+    font-size: 28px;
+    font-weight: bold;
     transition: color linear 0.3s;
     color: $heading_color;
     margin-bottom: 10px;
     display: block;
+}
+.article__item__link:hover{
+    color: $hover_color;
 }
 .up{
     margin-bottom: 15px;
