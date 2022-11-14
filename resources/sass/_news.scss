@@ -1,0 +1,20 @@
+.news{
+    margin: 25px 0;
+    display: flex;
+}
+.categories__block{
+    width: 200px;
+}
+.categories__block .categories .categories__list .categories__link{
+    text-transform: uppercase;
+    line-height: 50px;
+    color: $heading_color;
+    padding-left: 20px;
+    letter-spacing: 1px;
+}
+.categories__block .categories .categories__list .categories__link:hover{
+    color: $hover_color;
+}
+.news__block{
+   flex: 1;
+}

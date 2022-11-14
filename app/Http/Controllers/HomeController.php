@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         return view('index', [
             'title' => 'VOICE',
-            'last_news' => $news->getAllNews(),
+            'last_news' => array_slice($news->getAllNews(), 0, 3),
             'categories' => $categories->getAllCategories(),
             'add' => 'want_more'
         ]);

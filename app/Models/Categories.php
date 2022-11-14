@@ -69,8 +69,8 @@ class Categories
 
     public function getCategoryId($slug):?int
     {
-       if (array_key_exists($slug, $this->getAllCategories())){
-           return $this->getAllCategories()[$slug]['id'];
+       foreach ($this->getAllCategories() as $category) {
+           if($category['slug'] ==  $slug) return $category['id'];
        }
        return null;
     }
