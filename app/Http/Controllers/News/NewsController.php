@@ -5,10 +5,14 @@ namespace App\Http\Controllers\News;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\News;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use function view;
 
 class NewsController extends Controller
 {
+    /**
+     * @throws FileNotFoundException
+     */
     public function index(Categories $categories, News $news, $slug = null)
    {
 
@@ -27,7 +31,11 @@ class NewsController extends Controller
        ]);
    }
 
-   public function show($slug, $id, News $news, Categories $categories)
+    /**
+     * @throws FileNotFoundException
+     */
+
+    public function show($slug, $id, News $news, Categories $categories)
    {
        $article = $news->getOneNews($id);
 

@@ -39,7 +39,7 @@ class IndexController extends Controller
             $data['id'] = $lastKey + 1;
             $data['date_of_public'] = date('Y-m-d H:i:s');
 
-            if(array_key_exists('private', $data)){
+            if(array_key_exists('isPrivate', $data)){
                 $data['isPrivate'] = true;
             }else{
                 $data['isPrivate'] = false;
@@ -64,6 +64,10 @@ class IndexController extends Controller
     {
         return response()->download('test.jpg');
     }
+
+    /**
+     * @throws FileNotFoundException
+     */
 
     public function downloadArticles(Categories $categories, News $news, Request $request, HomeController $homeController)
     {
