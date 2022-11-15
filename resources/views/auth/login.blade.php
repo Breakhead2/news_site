@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container login">
+    <div class="login">
         <form action="#" class="form__login" method="POST">
             <div class="form__group">
                 <label for="user_email">

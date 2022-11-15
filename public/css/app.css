@@ -174,25 +174,24 @@ h6 {
 
 /* start section login and register styles */
 
-.container .login {
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
+.login {
+  margin: 100px auto;
+  max-width: 400px;
 }
 
 .form__login {
-  width: 400px;
   display: flex;
   flex-direction: column;
   font-size: 20px;
+  width: 100%;
 }
 
-.form__login .form__group {
+.form__group {
   display: flex;
   flex-direction: column;
 }
 
-.form__login .form__group input {
+.form__group input {
   border: 1px solid #ccc;
   color: #333;
   padding: 8px 16px;
@@ -223,6 +222,46 @@ h6 {
 
 .form__submit .form__submit__btn:hover {
   background-color: #ff2828;
+}
+
+/*section create start */
+
+.create {
+  margin: 50px auto;
+  max-width: 800px;
+}
+
+.form__create {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.form__group select {
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 8px 16px;
+  font-size: inherit;
+  background-color: #c4c4c4;
+  margin-bottom: 15px;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+}
+
+.form__group select option {
+  cursor: pointer;
+}
+
+.form__group textarea {
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 8px 16px;
+  font-size: inherit;
+  background-color: #c4c4c4;
+  margin-bottom: 15px;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  resize: vertical;
+  min-height: 175px;
 }
 
 /* section home start */

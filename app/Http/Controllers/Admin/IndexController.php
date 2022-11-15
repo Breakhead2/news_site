@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 
 class IndexController extends Controller
 {
@@ -14,8 +15,11 @@ class IndexController extends Controller
         ]);
     }
 
-    public function create():string
+    public function create(Categories $categories)
     {
-        return view('admin.create_news', ['title' => 'Публикация новости']);
+        return view('admin.create_news', [
+            'title' => 'Публикация новости',
+            'categories' => $categories->getAllCategories()
+        ]);
     }
 }
