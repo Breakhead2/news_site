@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Storage;
+
 class News
 {
     private array $data = [
@@ -439,9 +441,13 @@ class News
             ]
     ];
 
+    /**
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+
     public function getAllNews():array
     {
-       return $this->data;
+        return json_decode(Storage::disk('local')->get('news.json'), true);
     }
 
     public function getOneNews($id): ?array

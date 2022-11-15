@@ -417,6 +417,16 @@ h6 {
 
 /* section home end */
 
+/*section admin start */
+
+.container .greeting {
+  margin-top: 25px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* section admin end */
+
 /* section news start */
 
 .news {
@@ -442,6 +452,12 @@ h6 {
 
 .news__block {
   flex: 1;
+}
+
+.empty__news {
+  margin-top: 25px;
+  font-size: 20px;
+  text-align: center;
 }
 
 /* section news end */

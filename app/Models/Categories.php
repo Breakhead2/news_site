@@ -77,8 +77,8 @@ class Categories
 
     public function getCategoryName($slug):?string
     {
-        if (array_key_exists($slug, $this->getAllCategories())){
-            return $this->getAllCategories()[$slug]['name'];
+        foreach ($this->getAllCategories() as $category) {
+            if($category['slug'] ==  $slug) return $category['name'];
         }
         return null;
     }

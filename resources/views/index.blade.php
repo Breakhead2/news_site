@@ -5,9 +5,11 @@
     <div class="articles__box">
 
 {{--        Пока нет БД условно последние новости показаны так --}}
-        @foreach($last_news as $item)
+        @forelse($last_news as $item)
             @include('news.card_news')
-        @endforeach
+        @empty
+            <p class="empty__news">Нет новостей</p>
+        @endforelse
 
     </div>
 @endsection

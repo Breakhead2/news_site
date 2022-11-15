@@ -16,7 +16,7 @@
                 <input type="password" name="password" required placeholder="Пароль">
             </div>
             <div class="form__check">
-                <input class="form__check__input" type="checkbox" id="check">
+                <input class="form__check__input" type="checkbox" value="1" id="check">
                 <label class="form__check__label" for="check">
                     Запомнить меня
                 </label>

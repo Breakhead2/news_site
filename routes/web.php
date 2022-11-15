@@ -14,6 +14,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::get('/save', [HomeController::class, 'save'])->name('save');
 
 //Новости
 Route::name('news.')
@@ -29,7 +30,7 @@ Route::name('admin.')
     ->prefix('admin')
     ->group(function (){
         Route::get('/', [IndexController::class, 'index'])->name('index');
-        Route::get('/create', [IndexController::class, 'create'])->name('create');
-        Route::get('/download_image', [IndexController::class, 'create'])->name('downloadImage');
-        Route::get('/download_text', [IndexController::class, 'create'])->name('downloadText');
+        Route::match(['get', 'post'], '/create', [IndexController::class, 'create'])->name('create');
+        Route::get('/download_image', [IndexController::class, 'downloadImage'])->name('downloadImage');
+        Route::get('/download_text', [IndexController::class, 'downloadText'])->name('downloadText');
     });

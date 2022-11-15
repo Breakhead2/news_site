@@ -27,7 +27,7 @@
     <div class="wrapper">
         <header class="header">
             <div class="container">
-                <a href="/" class="logo">VOICE</a><span class="admin">admin mode</span>
+                <a href="{{ route('index') }}" class="logo">VOICE</a><span class="admin">admin mode</span>
                 <p class="desc">
                     Новостной сайт <span>voice</span> - голос народа.
                 </p>

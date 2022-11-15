@@ -39,10 +39,4 @@ class NewsController extends Controller
            'categories' => $categories->getAllCategories()
        ]);
    }
-
-   //TODO передать метод в контроллер Админа
-   public function add():string
-   {
-       return view('admin.add', ['title' => 'Добавление новости']);
-   }
 }

@@ -9,7 +9,7 @@
 
         <div class="under_up">
                 <p class="date_of_post">Опубликовано: <span class="date">{{ $item['date_of_public'] }}</span></p>
-                <p class="category">Категория: <span class="category_name">{{ $categories[$item['category_id']]['name'] }}</span></p>
+                <p class="category">Категория: <a href="{{ route('news.category', $categories[$item['category_id']]['slug']) }}" class="category_name">{{ $categories[$item['category_id']]['name'] }}</a></p>
         </div>
     </div>
     <div class="article">

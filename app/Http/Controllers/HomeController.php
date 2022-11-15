@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -31,5 +32,10 @@ class HomeController extends Controller
             'categories' => $categories->getAllCategories(),
             'add' => 'want_more'
         ]);
+    }
+
+    public function save(News $news)
+    {
+        Storage::disk('local')->put('news.json', json_encode($news->getAllNews(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-   <p>Добро пожаловать Admin!</p>
+   <p class="greeting">Добро пожаловать Admin!</p>
 @endsection
 
 
