@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Storage;
 
 class News
@@ -442,13 +443,17 @@ class News
     ];
 
     /**
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
 
     public function getAllNews():array
     {
         return json_decode(Storage::disk('local')->get('news.json'), true);
     }
+
+    /**
+     * @throws FileNotFoundException
+     */
 
     public function getOneNews($id): ?array
     {
@@ -458,10 +463,13 @@ class News
         return null;
     }
 
-    public function getFilteredNews($slug, Categories $categories):array
+    public function getFilteredNews($slug, Categories $categories, $category_id = null):array
     {
+        if(!is_null($slug)){
+            $category_id = $categories->getCategoryId($slug);
+        }
+
         $news = [];
-        $category_id = $categories->getCategoryId($slug);
 
         if(is_null($category_id)) return [];
 

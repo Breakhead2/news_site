@@ -32,5 +32,5 @@ Route::name('admin.')
         Route::get('/', [IndexController::class, 'index'])->name('index');
         Route::match(['get', 'post'], '/create', [IndexController::class, 'create'])->name('create');
         Route::get('/download_image', [IndexController::class, 'downloadImage'])->name('downloadImage');
-        Route::get('/download_text', [IndexController::class, 'downloadText'])->name('downloadText');
+        Route::match(['get', 'post'],'/download_articles', [IndexController::class, 'downloadArticles'])->name('downloadArticles');
     });

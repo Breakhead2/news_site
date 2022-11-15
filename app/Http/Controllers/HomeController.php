@@ -19,11 +19,6 @@ class HomeController extends Controller
         //$this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index(News $news, Categories $categories)
     {
         return view('index', [
@@ -34,8 +29,15 @@ class HomeController extends Controller
         ]);
     }
 
-    public function save(News $news)
+    public function save($data, $filename)
     {
-        Storage::disk('local')->put('news.json', json_encode($news->getAllNews(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        Storage::disk('local')->put($filename . '.json', json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    }
+
+    public function download($data, $filename)
+    {
+        return response()->json($data)
+            ->header('Content-Disposition', 'attachment; filename = ' . $filename . ".txt")
+            ->setEncodingOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 }

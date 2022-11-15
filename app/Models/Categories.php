@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Storage;
+
 class Categories
 {
     private array $categories = [
@@ -64,7 +66,7 @@ class Categories
 
     public function getAllCategories():array
     {
-        return $this->categories;
+        return json_decode(Storage::disk('local')->get('categories.json'), true);
     }
 
     public function getCategoryId($slug):?int
@@ -75,11 +77,14 @@ class Categories
        return null;
     }
 
-    public function getCategoryName($slug):?string
+    public function getCategoryName($slug, $id = null):?string
     {
+        if(is_null($slug)) return $this->getAllCategories()[$id]['name'];
+
         foreach ($this->getAllCategories() as $category) {
             if($category['slug'] ==  $slug) return $category['name'];
         }
+
         return null;
     }
 }

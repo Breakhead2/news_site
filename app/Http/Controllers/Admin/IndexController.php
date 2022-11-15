@@ -3,42 +3,55 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HomeController;
 use App\Models\Categories;
 use App\Models\News;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class IndexController extends Controller
 {
-    public function index():string
+    public function index()
     {
         return view('admin.index',[
             'title' => 'Админка'
         ]);
     }
 
-    public function create(Request $request, Categories $categories, News $news)
+    /**
+     * @throws FileNotFoundException
+     */
+
+    public function create(Request $request, Categories $categories, News $news, HomeController $homeController)
     {
         if($request->isMethod('post'))
         {
-            //TODO добавить новость в хранилище, прочитать старые новости, добавить новость в конец и сохранить файл, в конце редирект на новую новость.
+            $categories = $categories->getAllCategories();
+            $news = $news->getAllNews();
 
-            $date = $request->except('_token');
-            $date['date_of_public'] = date('Y-m-d H:i:s');
+            $newsKeys = array_keys($news);
+            $lastKey = array_pop($newsKeys);
 
-            if(array_key_exists('private', $date)){
-                $date['private'] = true;
+            //Подготовка массива данных
+            $data = $request->except('_token');
+            $data['id'] = $lastKey + 1;
+            $data['date_of_public'] = date('Y-m-d H:i:s');
+
+            if(array_key_exists('private', $data)){
+                $data['isPrivate'] = true;
             }else{
-                $date['private'] = false;
+                $data['isPrivate'] = false;
             }
 
-            $news_keys = array_keys($news->getAllNews());
-            $last_key = array_pop($news_keys);
+            $news[$data['id']] = $data;
 
-            $date['id'] = $last_key + 1;
-//
+            $homeController->save($news, 'news');
+
             //$request->flash();
-            //return redirect()->route('news.show', [$categories[$date['category']]['slug'], $news[$last_key+1]['id']]);
+
+            return redirect()->route('news.show', [$categories[$data['category_id']]['slug'], $data['id']]);
         }
 
         return view('admin.create_news', [
@@ -52,10 +65,19 @@ class IndexController extends Controller
         return response()->download('test.jpg');
     }
 
-    public function downloadText(News $news)
+    public function downloadArticles(Categories $categories, News $news, Request $request, HomeController $homeController)
     {
-        return response()->json($news->getAllNews())
-            ->header('Content-Disposition', 'attachment; filename = "news.txt"')
-            ->setEncodingOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        if ($request->isMethod('post')){
+            $category_id = $request->input('category_id');
+            $categoryName = $categories->getCategoryName(null, $category_id);
+            $data = $news->getFilteredNews(null, $categories, $category_id);
+
+           return $homeController->download($data, $categoryName);
+        }
+
+        return view('admin.downloadArticles', [
+            'title' => 'Скачать новости',
+            'categories' => $categories->getAllCategories()
+        ]);
     }
 }

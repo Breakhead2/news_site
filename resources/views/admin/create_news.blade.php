@@ -16,7 +16,7 @@
                 <label for="category">
                     Категория
                 </label>
-                <select  name="category" id="category">
+                <select  name="category_id" id="category">
                     @forelse($categories as $category)
                         <option {{ (old('category') == $category['id']) ? 'selected' : '' }} value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                     @empty
@@ -40,7 +40,7 @@
             </div>
 
             <div class="form__check">
-                <input class="form__check__input" name="private" type="checkbox" id="isPrivate" {{ old('private') ? 'checked' : '' }} value="1">
+                <input class="form__check__input" name="isPrivate" type="checkbox" id="isPrivate" {{ old('private') ? 'checked' : '' }} value="1">
                 <label class="form__check__label" for="isPrivate">
                     Приватная
                 </label>
