@@ -33,6 +33,7 @@ class UserTest extends TestCase
     public function testPageAdmin(){
         $response = $this->post('/admin');
 
+        $response->assertStatus(200);
         $response->assertSeeText('Добро пожаловать Admin!');
     }
 }

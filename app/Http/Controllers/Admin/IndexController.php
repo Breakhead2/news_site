@@ -39,11 +39,7 @@ class IndexController extends Controller
             $data['id'] = $lastKey + 1;
             $data['date_of_public'] = date('Y-m-d H:i:s');
 
-            if(array_key_exists('isPrivate', $data)){
-                $data['isPrivate'] = true;
-            }else{
-                $data['isPrivate'] = false;
-            }
+            $data['isPrivate'] = isset($data['isPrivate']);
 
             $news[$data['id']] = $data;
 
