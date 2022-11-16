@@ -31,23 +31,24 @@ class IndexController extends Controller
             $categories = $categories->getAllCategories();
             $news = $news->getAllNews();
 
-            $newsKeys = array_keys($news);
-            $lastKey = array_pop($newsKeys);
-
             //Подготовка массива данных
-            $data = $request->except('_token');
-            $data['id'] = $lastKey + 1;
-            $data['date_of_public'] = date('Y-m-d H:i:s');
+            $data = [
+                'category_id' => (int)$request->category_id,
+                'title' => $request->title,
+                'desc' => $request->desc,
+                'inform' => $request->inform,
+                'date_of_public' => date('Y-m-d H:i:s'),
+                'isPrivate' => $request->has('isPrivate')
+            ];
 
-            $data['isPrivate'] = isset($data['isPrivate']);
+            $news[] = $data;
 
-            $news[$data['id']] = $data;
+            $id = array_key_last($news);
+            $news[$id]['id'] = $id;
 
             $homeController->save($news, 'news');
 
-            //$request->flash();
-
-            return redirect()->route('news.show', [$categories[$data['category_id']]['slug'], $data['id']]);
+            return redirect()->route('news.show', [$categories[$data['category_id']]['slug'], array_key_last($news)]);
         }
 
         return view('admin.create_news', [
