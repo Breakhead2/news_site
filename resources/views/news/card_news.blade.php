@@ -16,11 +16,11 @@
 
         @if($item['isPrivate'])
             <div class="img__container">
-                <img src="/images/preview.jpg" alt="preview">
+                <img src="/storage/images/preview.jpg" alt="preview">
             </div>
         @else
             <a href="{{ route('news.show', [$categories[$item['category_id']]['slug'], $item['id']]) }}" class="img__container">
-                <img src="/images/preview.jpg" alt="preview">
+                <img src="/storage/images/preview.jpg" alt="preview">
             </a>
         @endif
 

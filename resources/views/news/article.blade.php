@@ -4,7 +4,7 @@
     <div class="article__block">
         <div class="article__top">
             <div class="image__container">
-                <img src="/images/preview.jpg" alt="back">
+                <img src="/storage/images/preview.jpg" alt="back">
             </div>
             <div class="under_up">
                 <p class="date_of_post">Опубликовано: <span class="date">{{ $article['date_of_public'] }}</span></p>
