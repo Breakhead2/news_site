@@ -24,8 +24,8 @@ class HomeController extends Controller
     public function index()
     {
         $last_news= DB::table('news')
-            ->join('categories', 'category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.*')
+            ->join('categories', 'news.category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name', 'categories.slug')
             ->orderByDesc('date_of_public')
             ->limit(5)
             ->get();

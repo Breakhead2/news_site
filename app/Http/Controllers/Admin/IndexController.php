@@ -20,11 +20,7 @@ class IndexController extends Controller
         ]);
     }
 
-    /**
-     * @throws FileNotFoundException
-     */
-
-    public function create(Request $request, Categories $categories, News $news, HomeController $homeController)
+    public function create(Request $request)
     {
         if($request->isMethod('post'))
         {
@@ -34,18 +30,24 @@ class IndexController extends Controller
                 'category_id' => (int)$request->category_id,
                 'title' => $request->title,
                 'desc' => $request->desc,
-                'image' => $request->image,
                 'inform' => $request->inform,
                 'date_of_public' => date('Y-m-d H:i:s'),
                 'isPrivate' => $request->has('isPrivate')
             ];
 
-            dump($data);
-            $request->flash();
-            return redirect()->route('admin.create');
+            $id = DB::table('news')->insertGetId($data);
+
+            $article = DB::table('news')
+                ->join('categories', 'category_id', '=', 'categories.id')
+                ->select('news.id', 'categories.slug')
+                ->where('news.id', '=', $id)
+                ->first();
+
+//            $request->flash();
+
 //            return redirect()->route('admin.create')->with('notice', 'Новость успешно добавлена');
 
-            //return redirect()->route('news.show', [$categories[$data['category_id']]['slug'], array_key_last($news)]);
+            return redirect()->route('news.show', [$article->slug, $article->id]);
         }
 
         $categories = DB::table('categories')->get();

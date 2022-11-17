@@ -17,14 +17,15 @@ class NewsController extends Controller
        if(is_null($slug)){
            $news = DB::table('news')
                ->join('categories', 'category_id', '=', 'categories.id')
-               ->select('news.*', 'categories.*')
+               ->select('news.*', 'categories.name', 'categories.slug')
                ->get();
        }else{
            $news = DB::table('news')
                ->join('categories', 'category_id', '=', 'categories.id')
-               ->select('news.*', 'categories.*')
+               ->select('news.*', 'categories.name', 'categories.slug')
                ->where('slug', '=', $slug)
                ->get();
+
 
            if(is_null($news)) return view('404', ['title' => 'Страница не найдена']);
        }
@@ -43,13 +44,14 @@ class NewsController extends Controller
    {
        $article = DB::table('news')
            ->join('categories', 'category_id', '=', 'categories.id')
-           ->select('news.*', 'categories.*')
-           ->get($id);
+           ->select('news.*', 'categories.name', 'categories.slug')
+           ->where('news.id', '=', $id)
+           ->first();
 
        if(is_null($article)) return view('404', ['title' => 'Страница не найдена']);
 
        return view('news.article', [
-           'title' => $article['title'],
+           'title' => $article->title,
            'article' => $article
        ]);
    }

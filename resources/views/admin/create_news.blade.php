@@ -39,13 +39,6 @@
                 <textarea name="inform" id="inform" required="required">{{ old('inform') }}</textarea>
             </div>
 
-            <div class="form__group">
-                <label for="image">
-                    URL изображения
-                </label>
-                <input value="{{ old('image') }}" type="url" name="image" placeholder="URL изображения">
-            </div>
-
             <div class="form__check">
                 <input class="form__check__input" name="isPrivate" type="checkbox" id="isPrivate" {{ old('private') ? 'checked' : '' }} value="1">
                 <label class="form__check__label" for="isPrivate">
