@@ -6,7 +6,7 @@
             <ul class="categories">
                 @forelse($categories as $category)
                     <li class="categories__list">
-                        <a class="categories__link" href="{{ route('news.category', $category['slug']) }}">{{ $category['name'] }}</a>
+                        <a class="categories__link" href="{{ route('news.category', $category->slug) }}">{{ $category->name }}</a>
                     </li>
                 @empty
                     <li class="categories__list">
@@ -16,13 +16,13 @@
             </ul>
         </div>
         <div class="news__block">
-                <div class="news__box">
-                    @forelse($news as $item)
-                        @include('news.card_news')
-                    @empty
-                        <p class="empty__news">Нет новостей</p>
-                    @endforelse
-                </div>
+            <div class="news__box">
+                @forelse($news as $item)
+                    @include('news.card_news')
+                @empty
+                    <p class="empty__news">Нет новостей</p>
+                @endforelse
             </div>
+        </div>
     </div>
 @endsection

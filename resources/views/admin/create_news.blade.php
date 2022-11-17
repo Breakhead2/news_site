@@ -18,7 +18,7 @@
                 </label>
                 <select  name="category_id" id="category">
                     @forelse($categories as $category)
-                        <option {{ (old('category') == $category['id']) ? 'selected' : '' }} value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                        <option {{ old('category') == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                     @empty
                         <option value="0">Нет категорий</option>
                     @endforelse
@@ -37,6 +37,13 @@
                     Текст
                 </label>
                 <textarea name="inform" id="inform" required="required">{{ old('inform') }}</textarea>
+            </div>
+
+            <div class="form__group">
+                <label for="image">
+                    URL изображения
+                </label>
+                <input value="{{ old('image') }}" type="url" name="image" placeholder="URL изображения">
             </div>
 
             <div class="form__check">

@@ -14,7 +14,6 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
-Route::get('/save', [HomeController::class, 'save'])->name('save');
 
 //Новости
 Route::name('news.')

@@ -4,7 +4,6 @@
     <h2 class="heading"> Последние новости</h2>
     <div class="articles__box">
 
-{{--        Пока нет БД условно последние новости показаны так --}}
         @forelse($last_news as $item)
             @include('news.card_news')
         @empty
