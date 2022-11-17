@@ -37,6 +37,11 @@
             </div>
         </header>
         <main>
+            @if (session('notice'))
+                <div class="notice">
+                    {{ session('notice') }}
+                </div>
+            @endif
             <div class="container">
                 @yield('content')
             </div>

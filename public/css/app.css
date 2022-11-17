@@ -415,6 +415,12 @@ h6 {
   background-color: #ff2828;
 }
 
+.notice {
+  background-color: #999;
+  padding: 20px;
+  color: #333;
+}
+
 /* section home end */
 
 /*section admin start */

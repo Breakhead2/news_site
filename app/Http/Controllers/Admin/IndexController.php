@@ -48,6 +48,8 @@ class IndexController extends Controller
 
             $homeController->save($news, 'news');
 
+//            return redirect()->route('admin.create')->with('notice', 'Новость успешно добавлена');
+
             return redirect()->route('news.show', [$categories[$data['category_id']]['slug'], array_key_last($news)]);
         }
 
