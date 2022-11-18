@@ -37,17 +37,20 @@ class IndexController extends Controller
 
             $id = DB::table('news')->insertGetId($data);
 
+            $request->flash();
+
             $article = DB::table('news')
                 ->join('categories', 'category_id', '=', 'categories.id')
                 ->select('news.id', 'categories.slug')
                 ->where('news.id', '=', $id)
                 ->first();
 
-//            $request->flash();
-
-//            return redirect()->route('admin.create')->with('notice', 'Новость успешно добавлена');
-
-            return redirect()->route('news.show', [$article->slug, $article->id]);
+            return redirect()
+                ->route('admin.create')
+                ->with('notice', [
+                    'text' => 'Новость успешно добавлена! ',
+                    'link' =>  route('news.show', [$article->slug, $article->id])
+                ]);
         }
 
         $categories = DB::table('categories')->get();

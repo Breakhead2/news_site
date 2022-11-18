@@ -37,11 +37,20 @@
             </div>
         </header>
         <main>
+
             @if (session('notice'))
-                <div class="notice">
-                    {{ session('notice') }}
+                <div class="alert alert-success">
+                    <div class="container">
+                        <div class="alert-text">
+                            {{ session('notice')['text'] }}
+                            @if(session('notice')['link'])
+                                <a href="{{ session('notice')['link'] }}" class="alert-link">Посмотреть можно тут. </a>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             @endif
+
             <div class="container">
                 @yield('content')
             </div>
