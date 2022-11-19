@@ -10,7 +10,7 @@
                 </label>
                 <select  name="category_id" id="category">
                     @forelse($categories as $category)
-                        <option {{ (old('category') == $category['id']) ? 'selected' : '' }} value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                        <option {{ (old('category') == $category->id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                     @empty
                         <option value="0">Нет категорий</option>
                     @endforelse

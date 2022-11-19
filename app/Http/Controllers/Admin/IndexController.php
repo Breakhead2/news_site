@@ -68,28 +68,35 @@ class IndexController extends Controller
             ->setEncodingOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
-    public function downloadImage()
+    public function downloadImage(): \Symfony\Component\HttpFoundation\BinaryFileResponse
     {
         return response()->download('test.jpg');
     }
 
-    /**
-     * @throws FileNotFoundException
-     */
-
-    public function downloadArticles(Categories $categories, News $news, Request $request)
+    public function downloadArticles(Request $request)
     {
         if ($request->isMethod('post')){
             $category_id = $request->input('category_id');
-            $categoryName = $categories->getCategoryName(null, $category_id);
-            $data = $news->getFilteredNews(null, $categories, $category_id);
 
-           return $this->download($data, $categoryName);
+            $categoryName = DB::table('categories')
+                ->select('name')
+                ->where('categories.id', '=', $category_id)
+                ->first();
+
+            $data = DB::table('news')
+                ->join('categories', 'category_id', '=', 'categories.id')
+                ->select('news.*')
+                ->where('categories.id', '=', $category_id)
+                ->get();
+
+           return $this->download($data, $categoryName->name);
         }
+
+        $categories = DB::table('categories')->get();
 
         return view('admin.downloadArticles', [
             'title' => 'Скачать новости',
-            'categories' => $categories->getAllCategories()
+            'categories' => $categories
         ]);
     }
 }
