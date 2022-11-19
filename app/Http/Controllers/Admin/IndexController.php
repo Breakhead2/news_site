@@ -37,7 +37,7 @@ class IndexController extends Controller
 
             $id = DB::table('news')->insertGetId($data);
 
-            $request->flash();
+//            $request->flash();
 
             $article = DB::table('news')
                 ->join('categories', 'category_id', '=', 'categories.id')
