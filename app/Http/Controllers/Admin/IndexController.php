@@ -3,10 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\HomeController;
-use App\Models\Categories;
-use App\Models\News;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,7 +23,7 @@ class IndexController extends Controller
 
             //Подготовка массива данных
             $data = [
-                'category_id' => (int)$request->category_id,
+                'category_id' => $request->category_id,
                 'title' => $request->title,
                 'desc' => $request->desc,
                 'inform' => $request->inform,

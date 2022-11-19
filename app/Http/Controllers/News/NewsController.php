@@ -3,9 +3,6 @@
 namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
-use App\Models\Categories;
-use App\Models\News;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\DB;
 use function view;
 
@@ -31,7 +28,7 @@ class NewsController extends Controller
        }
 
        $categories = DB::table('categories')->get();
-       $category_name = DB::table('categories')->select('name')->where('slug', '=', $slug)-> first();
+       $category_name = DB::table('categories')->select('name')->where('slug', '=', $slug)->first();
 
        return view('news.index', [
            'title' => 'Новости ' . ($category_name->name ?? ''),
@@ -40,7 +37,7 @@ class NewsController extends Controller
        ]);
    }
 
-    public function show($slug, $id)
+    public function show($id)
    {
        $article = DB::table('news')
            ->join('categories', 'category_id', '=', 'categories.id')
