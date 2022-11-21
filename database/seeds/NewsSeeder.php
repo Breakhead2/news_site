@@ -26,10 +26,10 @@ class NewsSeeder extends Seeder
                 $inform = $faker->realText(rand(800, 5000));
                 $data[] = [
                     'category_id' => $category_id,
-                    'title' => $faker->realText(rand(30, 100)),
-                    'desc' => mb_substr($inform, 0, mb_strpos($inform, ' ', 250)),
+                    'title' => $faker->realText(rand(30, 80)),
+                    'desc' => mb_substr($inform, 0, mb_strpos($inform, ' ', 250)) . '...',
                     'inform' => $inform,
-                    'date_of_public' => $faker->date('Y-m-d h:m:s'),
+                    'created_at' => $faker->date('Y-m-d h:m:s'),
                     'isPrivate' => $faker->boolean()
                 ];
             }else{

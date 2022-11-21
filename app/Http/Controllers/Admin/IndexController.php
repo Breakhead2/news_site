@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\{Category, News};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,11 +49,9 @@ class IndexController extends Controller
                 ]);
         }
 
-        $categories = DB::table('categories')->get();
-
         return view('admin.create_news', [
             'title' => 'Публикация новости',
-            'categories' => $categories
+            'categories' => Category::all()
         ]);
     }
 
@@ -74,12 +73,12 @@ class IndexController extends Controller
         if ($request->isMethod('post')){
             $category_id = $request->input('category_id');
 
-            $categoryName = DB::table('categories')
+            $categoryName = Category::query()
                 ->select('name')
                 ->where('categories.id', '=', $category_id)
                 ->first();
 
-            $data = DB::table('news')
+            $data = News::query()
                 ->join('categories', 'category_id', '=', 'categories.id')
                 ->select('news.*')
                 ->where('categories.id', '=', $category_id)
@@ -88,11 +87,9 @@ class IndexController extends Controller
            return $this->download($data, $categoryName->name);
         }
 
-        $categories = DB::table('categories')->get();
-
         return view('admin.downloadArticles', [
             'title' => 'Скачать новости',
-            'categories' => $categories
+            'categories' => Category::all()
         ]);
     }
 }

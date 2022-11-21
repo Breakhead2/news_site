@@ -20,7 +20,7 @@ class CreateNewsTable extends Migration
             $table->text('desc');
             $table->text('inform');
             $table->string('image')->default('preview.jpg');
-            $table->timestamp('date_of_public')->nullable();
+            $table->timestamps();
             $table->boolean('isPrivate')->default(false);
         });
     }

@@ -21,7 +21,7 @@ Route::name('news.')
     ->group(function (){
         Route::get('/', [NewsController::class, 'index'])->name('index');
         Route::get('/{slug}', [NewsController::class, 'category'])->name('category');
-        Route::get('/{slug}/{id}', [NewsController::class, 'show'])->name('show');
+        Route::get('/{slug}/{news}', [NewsController::class, 'show'])->name('show');
     });
 
 //Админка

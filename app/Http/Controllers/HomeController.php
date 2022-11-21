@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
 use App\Models\News;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -23,10 +18,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        $last_news= DB::table('news')
+        $last_news= News::query()
             ->join('categories', 'news.category_id', '=', 'categories.id')
             ->select('news.*', 'categories.name', 'categories.slug')
-            ->orderByDesc('date_of_public')
+            ->orderByDesc('created_at')
             ->limit(5)
             ->get();
 

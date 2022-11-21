@@ -23,6 +23,8 @@
                     <p class="empty__news">Нет новостей</p>
                 @endforelse
             </div>
+                {{ $news->links() }}
+{{--                {{ $news->links('paginate') }}--}}
         </div>
     </div>
 @endsection
