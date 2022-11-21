@@ -20,7 +20,7 @@ Route::name('news.')
     ->prefix('news')
     ->group(function (){
         Route::get('/', [NewsController::class, 'index'])->name('index');
-        Route::get('/{slug}', [NewsController::class, 'index'])->name('category');
+        Route::get('/{slug}', [NewsController::class, 'category'])->name('category');
         Route::get('/{slug}/{id}', [NewsController::class, 'show'])->name('show');
     });
 

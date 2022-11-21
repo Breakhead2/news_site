@@ -20,7 +20,6 @@ class IndexController extends Controller
     {
         if($request->isMethod('post'))
         {
-
             //Подготовка массива данных
             $data = [
                 'category_id' => $request->category_id,
@@ -59,7 +58,8 @@ class IndexController extends Controller
 
     private function download($data, $filename): \Illuminate\Http\JsonResponse
     {
-        return response()->json($data)
+        return response()
+            ->json($data)
             ->header('Content-Disposition', 'attachment; filename = ' . $filename . ".txt")
             ->setEncodingOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
