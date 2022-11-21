@@ -50,7 +50,7 @@ class NewsController extends Controller
        $article = News::query()
            ->join('categories', 'category_id', '=', 'categories.id')
            ->select('news.*', 'categories.name', 'categories.slug')
-           ->where('news.id', '=', $news)
+           ->where('news.id', '=', $news->id)
            ->first();
 
        return view('news.article', [

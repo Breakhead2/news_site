@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\{AboutController,
-    Admin\IndexController,
     Auth\LoginController,
     Auth\RegisterController,
-    HomeController,
-    News\NewsController};
+    HomeController};
+
+use App\Http\Controllers\News\{NewsController};
+
+use App\Http\Controllers\Admin\{IndexController, NewsController as AdminNewsController};
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,7 +32,14 @@ Route::name('admin.')
     ->prefix('admin')
     ->group(function (){
         Route::get('/', [IndexController::class, 'index'])->name('index');
-        Route::match(['get', 'post'], '/create', [IndexController::class, 'create'])->name('create');
+
+        //CRUD BLOCK
+        Route::match(['get', 'post'], '/create', [AdminNewsController::class, 'create'])->name('create');
+        Route::get('/edit/{news}', [AdminNewsController::class, 'edit'])->name('edit');
+        Route::get('/update/{news}', [AdminNewsController::class, 'update'])->name('update');
+        Route::get('/destroy/{news}', [AdminNewsController::class, 'destroy'])->name('destroy');
+
+
         Route::get('/download_image', [IndexController::class, 'downloadImage'])->name('downloadImage');
         Route::match(['get', 'post'],'/download_articles', [IndexController::class, 'downloadArticles'])->name('downloadArticles');
     });
