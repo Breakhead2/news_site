@@ -7,7 +7,7 @@ use App\Http\Controllers\{AboutController,
 
 use App\Http\Controllers\News\{NewsController};
 
-use App\Http\Controllers\Admin\{IndexController, NewsController as AdminNewsController};
+use App\Http\Controllers\Admin\{CategoryController, IndexController, NewsController as AdminNewsController};
 
 use Illuminate\Support\Facades\Route;
 
@@ -32,13 +32,19 @@ Route::name('admin.')
     ->prefix('admin')
     ->group(function (){
         Route::get('/', [IndexController::class, 'index'])->name('index');
+        Route::get('/{slug}', [IndexController::class, 'category'])->name('category');
 
-        //CRUD BLOCK
-        Route::match(['get', 'post'], '/create', [AdminNewsController::class, 'create'])->name('create');
-        Route::get('/edit/{news}', [AdminNewsController::class, 'edit'])->name('edit');
-        Route::get('/update/{news}', [AdminNewsController::class, 'update'])->name('update');
-        Route::get('/destroy/{news}', [AdminNewsController::class, 'destroy'])->name('destroy');
+        //CRUD BLOCK NEWS
+        Route::match(['get', 'post'], '/news/create', [AdminNewsController::class, 'create'])->name('create');
+        Route::get('/news/edit/{news}', [AdminNewsController::class, 'edit'])->name('edit');
+        Route::post('/news/update/{news}', [AdminNewsController::class, 'update'])->name('update');
+        Route::get('/news/destroy/{news}', [AdminNewsController::class, 'destroy'])->name('destroy');
 
+        //CRUD BLOCK CATEGORY
+        Route::match(['get', 'post'], '/category/create', [CategoryController::class, 'createCategory'])->name('createCategory');
+        Route::get('/category/edit/{category}', [CategoryController::class, 'editCategory'])->name('editCategory');
+        Route::post('/category/update/{category}', [CategoryController::class, 'updateCategory'])->name('updateCategory');
+        Route::get('/category/destroy/{category}', [CategoryController::class, 'destroyCategory'])->name('destroyCategory');
 
         Route::get('/download_image', [IndexController::class, 'downloadImage'])->name('downloadImage');
         Route::match(['get', 'post'],'/download_articles', [IndexController::class, 'downloadArticles'])->name('downloadArticles');

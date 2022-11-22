@@ -4,19 +4,50 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\{Category, News};
-use Illuminate\Http\Request;
+use Illuminate\Http\{Request, JsonResponse};
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        //TODO переписать вьюху
+        $news = News::query()
+            ->join('categories', 'category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name', 'categories.slug')
+            ->orderByDesc('created_at')
+            ->paginate(5);
+
         return view('admin.index',[
-            'title' => 'Админка'
+            'title' => 'Админка',
+            'categories' => Category::all(),
+            'news' => $news
         ]);
     }
 
-    private function download($data, $filename): \Illuminate\Http\JsonResponse
+    public function category($slug)
+    {
+        $news = News::query()
+            ->join('categories', 'category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name', 'categories.slug')
+            ->where('slug', '=', $slug)
+            ->orderByDesc('created_at')
+            ->paginate(5);
+
+
+        $category_name = Category::query()
+            ->select('name')
+            ->where('slug', '=', $slug)
+            ->first();
+
+
+        return view('admin.index', [
+            'title' => 'Новости ' . $category_name->name,
+            'categories' => Category::all(),
+            'news' => $news
+        ]);
+    }
+
+    private function download($data, $filename): JsonResponse
     {
         return response()
             ->json($data)
@@ -24,7 +55,7 @@ class IndexController extends Controller
             ->setEncodingOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
-    public function downloadImage(): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    public function downloadImage(): BinaryFileResponse
     {
         return response()->download('test.jpg');
     }

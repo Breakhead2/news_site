@@ -24,7 +24,6 @@
                 @endforelse
             </div>
                 {{ $news->links() }}
-{{--                {{ $news->links('paginate') }}--}}
         </div>
     </div>
 @endsection

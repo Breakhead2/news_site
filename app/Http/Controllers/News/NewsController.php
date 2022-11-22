@@ -14,6 +14,7 @@ class NewsController extends Controller
        $news = News::query()
            ->join('categories', 'category_id', '=', 'categories.id')
            ->select('news.*', 'categories.name', 'categories.slug')
+           ->orderByDesc('created_at')
            ->paginate(5);
 
 
@@ -31,12 +32,15 @@ class NewsController extends Controller
             ->join('categories', 'category_id', '=', 'categories.id')
             ->select('news.*', 'categories.name', 'categories.slug')
             ->where('slug', '=', $slug)
-            ->get();
+            ->orderByDesc('created_at')
+            ->paginate(5);
+
 
         $category_name = Category::query()
             ->select('name')
             ->where('slug', '=', $slug)
             ->first();
+
 
         return view('news.index', [
             'title' => 'Новости ' . $category_name->name,

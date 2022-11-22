@@ -4,11 +4,19 @@
     display: flex;
 }
 .categories__block{
-    width: 200px;
+    width: 250px;
+}
+.categories{
+    margin-top: 40px;
+}
+.categories__block .categories__list{
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
 }
 .categories__block .categories .categories__list .categories__link{
     text-transform: uppercase;
-    line-height: 50px;
+    line-height: 35px;
     color: $heading_color;
     padding-left: 20px;
     letter-spacing: 1px;
@@ -48,12 +56,34 @@
     margin: 20px 0;
 }
 
+/* start section tools admin */
+.tools{
+    display: flex;
+}
+
+.tools .tool{
+    color: white;
+    height: 35px;
+    width: 35px;
+    border-radius: 5px;
+    background-color: $gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color linear 0.3s;
+    margin-right: 5px;
+}
+.tools .tool:hover{
+    background-color: $hover_color;
+}
+/* end section tools admin */
+
 /*section paginate start */
 
 .pagination{
     margin-top: 15px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 20px;
 }
 .pagination li {

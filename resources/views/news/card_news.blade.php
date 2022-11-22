@@ -1,4 +1,3 @@
-
 <div class="article__item">
     <div class="up">
         @if($item->isPrivate)

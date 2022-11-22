@@ -249,7 +249,7 @@ h6 {
   cursor: pointer;
 }
 
-.form__group textarea {
+.form__group .inform {
   border: 1px solid #ccc;
   color: #333;
   padding: 8px 16px;
@@ -259,6 +259,10 @@ h6 {
   font-family: "Yanone Kaffeesatz", sans-serif;
   resize: vertical;
   min-height: 175px;
+}
+
+.form__group .inform.desc {
+  min-height: 100px;
 }
 
 /* section home start */
@@ -458,12 +462,22 @@ h6 {
 }
 
 .categories__block {
-  width: 200px;
+  width: 250px;
+}
+
+.categories {
+  margin-top: 40px;
+}
+
+.categories__block .categories__list {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .categories__block .categories .categories__list .categories__link {
   text-transform: uppercase;
-  line-height: 50px;
+  line-height: 35px;
   color: #333;
   padding-left: 20px;
   letter-spacing: 1px;
@@ -512,12 +526,37 @@ h6 {
   margin: 20px 0;
 }
 
+/* start section tools admin */
+
+.tools {
+  display: flex;
+}
+
+.tools .tool {
+  color: white;
+  height: 35px;
+  width: 35px;
+  border-radius: 5px;
+  background-color: #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color linear 0.3s;
+  margin-right: 5px;
+}
+
+.tools .tool:hover {
+  background-color: #ff2828;
+}
+
+/* end section tools admin */
+
 /*section paginate start */
 
 .pagination {
   margin-top: 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 20px;
 }
 

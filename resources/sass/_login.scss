@@ -68,7 +68,7 @@
 .form__group select option{
     cursor: pointer;
 }
-.form__group textarea{
+.form__group .inform{
     border: 1px solid #ccc;
     color: #333;
     padding: 8px 16px;
@@ -78,4 +78,7 @@
     font-family: $font-family-sans-serif;
     resize:vertical;
     min-height: 175px;
+}
+.form__group .inform.desc{
+    min-height: 100px;
 }
