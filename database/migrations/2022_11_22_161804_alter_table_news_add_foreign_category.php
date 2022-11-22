@@ -16,7 +16,8 @@ class AlterTableNewsAddForeignCategory extends Migration
         Schema::table('news', function (Blueprint $table){
             $table->foreign('category_id')
                 ->references('id')
-                ->on('categories');
+                ->on('categories')
+                ->onDelete('cascade');
         });
     }
 

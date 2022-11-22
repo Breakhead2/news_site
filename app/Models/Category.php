@@ -8,4 +8,9 @@ class Category extends Model
 {
     protected $table = 'Categories';
     protected $fillable = ['name', 'slug'];
+
+    public function news(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(News::class, 'category_id');
+    }
 }

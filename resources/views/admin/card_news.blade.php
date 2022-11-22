@@ -1,8 +1,10 @@
 <div class="article__item">
-    <div class="tools">
+    <form class="tools" method="post" action="{{ route('admin.destroy', $item) }}">
+        @csrf
+        @method('delete')
         <a href="{{ route('admin.edit', $item) }}" title="Редактировать" class="tool"><i class="fa-sharp fa-solid fa-pencil"></i></a>
-        <a href="{{ route('admin.destroy', $item) }}" title="Удалить" class="tool"><i class="fa-regular fa-trash-can"></i></a>
-    </div>
+        <button type="submit" title="Удалить" class="tool"><i class="fa-regular fa-trash-can"></i></button>
+    </form>
     <div class="up">
         <a href="{{ route('news.show', [$item->slug, $item]) }}" class="article__item__link">{{ $item->title }}</a>
         <div class="under_up">

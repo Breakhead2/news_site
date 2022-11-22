@@ -17,8 +17,6 @@ class NewsController extends Controller
            ->orderByDesc('created_at')
            ->paginate(5);
 
-
-
        return view('news.index', [
            'title' => 'Новости',
            'categories' => Category::all(),

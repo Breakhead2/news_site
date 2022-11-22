@@ -38,13 +38,13 @@ Route::name('admin.')
         Route::match(['get', 'post'], '/news/create', [AdminNewsController::class, 'create'])->name('create');
         Route::get('/news/edit/{news}', [AdminNewsController::class, 'edit'])->name('edit');
         Route::post('/news/update/{news}', [AdminNewsController::class, 'update'])->name('update');
-        Route::get('/news/destroy/{news}', [AdminNewsController::class, 'destroy'])->name('destroy');
+        Route::delete('/news/destroy/{news}', [AdminNewsController::class, 'destroy'])->name('destroy');
 
         //CRUD BLOCK CATEGORY
         Route::match(['get', 'post'], '/category/create', [CategoryController::class, 'createCategory'])->name('createCategory');
         Route::get('/category/edit/{category}', [CategoryController::class, 'editCategory'])->name('editCategory');
         Route::post('/category/update/{category}', [CategoryController::class, 'updateCategory'])->name('updateCategory');
-        Route::get('/category/destroy/{category}', [CategoryController::class, 'destroyCategory'])->name('destroyCategory');
+        Route::delete('/category/destroy/{category}', [CategoryController::class, 'destroyCategory'])->name('destroyCategory');
 
         Route::get('/download_image', [IndexController::class, 'downloadImage'])->name('downloadImage');
         Route::match(['get', 'post'],'/download_articles', [IndexController::class, 'downloadArticles'])->name('downloadArticles');
