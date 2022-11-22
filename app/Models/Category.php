@@ -8,5 +8,4 @@ class Category extends Model
 {
     protected $table = 'Categories';
     protected $fillable = ['name', 'slug'];
-    public $timestamps = false;
 }

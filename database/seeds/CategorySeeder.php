@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CategoriesSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,12 +12,7 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert($this->getData());
-    }
-
-    private function getData()
-    {
-        $data = [
+        $categories = [
             [
                 'name' => 'Политика',
                 'slug' => 'politics'
@@ -64,6 +59,6 @@ class CategoriesSeeder extends Seeder
             ]
         ];
 
-        return $data;
+        DB::table('categories')->insert($categories);
     }
 }
