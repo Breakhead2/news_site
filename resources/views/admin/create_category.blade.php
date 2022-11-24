@@ -9,11 +9,11 @@
                 <label for="category name">
                     Название категории
                 </label>
-                <input autofocus="autofocus" value="{{ old('name') ?? (isset($category) ? $category->name : '') }}" type="text" name="name" required="required" placeholder="Название категории">
+                <input autofocus="autofocus" value="{{ old('name') ?? (isset($category) ? $category->name : '') }}" type="text" name="name" placeholder="Название категории">
 
                 @if($errors->has('name'))
                     <span class="error">
-                        @foreach($error->get() as $error)
+                        @foreach($errors->get('name') as $error)
                          {{ $error }}
                         @endforeach
                     </span>
@@ -22,7 +22,7 @@
             </div>
 
             <div class="form__submit">
-                <button type="submit" class="form__submit__btn">{{ isset($category) ? 'Обновить' : 'Создать' }}</button>
+                <button type="submit" class="form__submit__btn">{{ isset($category) ? 'Обновить' : 'Добавить' }}</button>
             </div>
         </form>
     </div>

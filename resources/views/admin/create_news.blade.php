@@ -9,7 +9,7 @@
                 <label for="news_title">
                     Заголовок
                 </label>
-                <input autofocus="autofocus" value="{{ isset($news) ? $news->title : old('title') }}" type="text" name="title" required="required" placeholder="Заголовок">
+                <input autofocus="autofocus" value="{{ isset($news) ? $news->title : old('title') }}" type="text" name="title" placeholder="Заголовок">
                 @if($errors->has('title'))
                     <span class="error">
                         @foreach($errors->get('title') as $error)
@@ -43,7 +43,7 @@
                 <label for="desc">
                     Краткое описание
                 </label>
-                <textarea class="inform desc" name="desc" required="required">{{ isset($news) ? $news->desc : old('desc') }} </textarea>
+                <textarea class="inform desc" name="desc">{{ isset($news) ? $news->desc : old('desc') }} </textarea>
                 @if($errors->has('desc'))
                     <span class="error">
                         @foreach($errors->get('desc') as $error)
@@ -57,7 +57,7 @@
                 <label for="inform">
                     Текст
                 </label>
-                <textarea class="inform"  name="inform" required="required">{{ isset($news) ? $news->inform : old('inform') }}</textarea>
+                <textarea class="inform"  name="inform">{{ isset($news) ? $news->inform : old('inform') }}</textarea>
                 @if($errors->has('inform'))
                     <span class="error">
                         @foreach($errors->get('inform') as $error)

@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad912e53-630d-4ec1-a35e-d0a1000095c3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env.dusk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreNews.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreNews.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/ru/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/ru/validation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/create_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/create_category.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/create_news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/create_news.blade.php" afterDir="false" />
     </list>
@@ -131,6 +135,8 @@
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/laravel/dusk" />
+      <path value="$PROJECT_DIR$/vendor/php-webdriver/webdriver" />
     </include_path>
   </component>
   <component name="ProjectId" id="2HMsakqm5nF0XiDylZfKfoGVPSN" />
@@ -195,7 +201,7 @@
       <workItem from="1669032076216" duration="15261000" />
       <workItem from="1669059520196" duration="149000" />
       <workItem from="1669109328134" duration="23436000" />
-      <workItem from="1669271874538" duration="24582000" />
+      <workItem from="1669271874538" duration="30581000" />
     </task>
     <servers />
   </component>

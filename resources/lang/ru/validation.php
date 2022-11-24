@@ -161,6 +161,7 @@ return [
     */
 
     'attributes' => [
+        'desc'                  => 'Краткое описание',
         'name'                  => 'Имя',
         'username'              => 'Никнейм',
         'email'                 => 'E-Mail адрес',
@@ -182,12 +183,13 @@ return [
         'hour'                  => 'Час',
         'minute'                => 'Минута',
         'second'                => 'Секунда',
-        'title'                 => 'Наименование',
+        'title'                 => 'Заголовок',
         'content'               => 'Контент',
         'description'           => 'Описание',
         'excerpt'               => 'Выдержка',
         'date'                  => 'Дата',
         'time'                  => 'Время',
+        'text'                  => 'Текст',
         'available'             => 'Доступно',
         'size'                  => 'Размер',
     ],
