@@ -25,10 +25,10 @@ class StoreNews extends FormRequest
     public function rules(Category $category)
     {
         return [
-            'title' => 'required|alpha|min:15|max:80',
+            'title' => 'required|min:15|max:80',
             'category_id' => "required|exists:{$category->getTable()},id",
-            'desc' => 'required|alpha|min:30|max:250',
-            'inform' => 'required|alpha|min:800|max:5000',
+            'desc' => 'required|min:30|max:250',
+            'inform' => 'required|min:800|max:5000',
             'isPrivate' => 'sometimes|in:1'
             ];
     }

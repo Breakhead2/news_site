@@ -10,9 +10,15 @@
                     Название категории
                 </label>
                 <input autofocus="autofocus" value="{{ old('name') ?? (isset($category) ? $category->name : '') }}" type="text" name="name" required="required" placeholder="Название категории">
-                @error('name')
-                <span class="error"> {{ $message }}</span>
-                @enderror
+
+                @if($errors->has('name'))
+                    <span class="error">
+                        @foreach($error->get() as $error)
+                         {{ $error }}
+                        @endforeach
+                    </span>
+                @endif
+
             </div>
 
             <div class="form__submit">

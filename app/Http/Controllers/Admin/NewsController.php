@@ -15,7 +15,7 @@ class NewsController extends Controller
         $news = News::query()
             ->join('categories', 'category_id', '=', 'categories.id')
             ->select('news.*', 'categories.name', 'categories.slug')
-            ->orderByDesc('created_at')
+            ->orderByDesc('news.created_at')
             ->paginate(5);
 
         return view('admin.index',[
@@ -31,7 +31,7 @@ class NewsController extends Controller
             ->join('categories', 'category_id', '=', 'categories.id')
             ->select('news.*', 'categories.name', 'categories.slug')
             ->where('slug', '=', $slug)
-            ->orderByDesc('created_at')
+            ->orderByDesc('news.created_at')
             ->paginate(5);
 
 
