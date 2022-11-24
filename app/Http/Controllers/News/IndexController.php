@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\{Category, News};
 use function view;
 
-class NewsController extends Controller
+class IndexController extends Controller
 {
 
     public function index()

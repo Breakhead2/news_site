@@ -5,50 +5,71 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 
 class CategoryController extends Controller
 {
-    public function createCategory(Request $request, Category $category)
+    public function create()
     {
-        if($request->isMethod('post'))
-        {
-            $category->fill($request->all());
-            $category->save();
-
-            return redirect()->route('admin.createCategory')->with('notice', [
-                'text' => 'Категория успешно добавлена'
-            ]);
-        }
-
-        return view('admin.createCategory', ['title' => 'Создать категорию']);
+        return view('admin.create_category', ['title' => 'Создать категорию']);
     }
 
-    public function editCategory(Category $category)
+    /**
+     * @throws ValidationException
+     */
+
+    public function store(Request $request, Category $category): \Illuminate\Http\RedirectResponse
     {
-        return view('admin.createCategory', [
+
+        $this->validate($request, Category::rules());
+        $data = $request->all();
+
+        //Создание слага
+        $data['slug'] = Str::slug($request->name);
+
+        $category->fill($data);
+        $category->save();
+
+        return redirect()
+            ->route('admin.category.create')
+            ->with('notice', [
+            'status' => 'success',
+            'text' => 'Категория успешно добавлена'
+        ]);
+    }
+
+    public function edit(Category $category)
+    {
+        return view('admin.create_category', [
             'title' => 'Редактировать категорию',
             'category' => $category
         ]);
     }
 
-    public function updateCategory(Request $request, Category $category): \Illuminate\Http\RedirectResponse
+    public function update(Request $request, Category $category): \Illuminate\Http\RedirectResponse
     {
+        $this->validate($request, Category::rules());
+
         $category->fill($request->all());
         $category->save();
 
-        return redirect()->route('admin.index')
-            ->with('notice', ['text' => 'Категория успешно обновлена!']);
+        return redirect()
+            ->route('admin.news.index')
+            ->with('notice', [
+                'status' => 'success',
+                'text' => 'Категория успешно обновлена!'
+            ]);
     }
 
-    /**
-     * @throws \Exception
-     */
-
-    public function destroyCategory(Category $category)
+    public function destroy(Category $category): \Illuminate\Http\RedirectResponse
     {
         $category->delete();
 
-        return redirect()->route('admin.index')->with('notice', ['text' => 'Категория успешно удалена']);
+        return redirect()->route('admin.news.index')->with('notice', [
+            'status' => 'success',
+            'text' => 'Категория успешно удалена'
+        ]);
     }
 }

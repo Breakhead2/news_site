@@ -186,6 +186,7 @@ h6 {
 .form__group {
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
 }
 
 .form__group input {
@@ -194,7 +195,6 @@ h6 {
   padding: 8px 16px;
   font-size: inherit;
   background-color: #c4c4c4;
-  margin-bottom: 15px;
 }
 
 .form__check .form__check__input {
@@ -255,7 +255,6 @@ h6 {
   padding: 8px 16px;
   font-size: inherit;
   background-color: #c4c4c4;
-  margin-bottom: 15px;
   font-family: "Yanone Kaffeesatz", sans-serif;
   resize: vertical;
   min-height: 175px;
@@ -263,6 +262,11 @@ h6 {
 
 .form__group .inform.desc {
   min-height: 100px;
+}
+
+.error {
+  padding: 5px 16px;
+  background-color: #ff2828;
 }
 
 /* section home start */

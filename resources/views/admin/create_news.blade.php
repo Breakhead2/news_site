@@ -2,14 +2,21 @@
 
 @section('content')
     <div class="create">
-        <form action="{{ isset($news) ? route('admin.update', $news) : route('admin.create') }}" class="form__create" method="POST">
+        <form action="{{ isset($news) ? route('admin.news.update', $news) : route('admin.news.store') }}" class="form__create" method="POST">
             @csrf
-
+            @if(isset($news)) @method('PUT') @endif
             <div class="form__group">
                 <label for="news_title">
                     Заголовок
                 </label>
-                <input autofocus="autofocus" value="{{ isset($news) ? $news->title : '' }}" type="text" name="title" required="required" placeholder="Заголовок">
+                <input autofocus="autofocus" value="{{ isset($news) ? $news->title : old('title') }}" type="text" name="title" required="required" placeholder="Заголовок">
+                @if($errors->has('title'))
+                    <span class="error">
+                    @foreach($errors->get('title') as $error)
+                        {{ $error }}
+                    </span>
+                    @endforeach
+                @endif
             </div>
 
             <div class="form__group">
@@ -33,14 +40,28 @@
                 <label for="desc">
                     Краткое описание
                 </label>
-                <textarea class="inform desc" name="desc" required="required">{{ isset($news) ? $news->desc : '' }} </textarea>
+                <textarea class="inform desc" name="desc" required="required">{{ isset($news) ? $news->desc : old('desc') }} </textarea>
+                @if($errors->has('desc'))
+                    <span class="error">
+                    @foreach($errors->get('desc') as $error)
+                            {{ $error }}
+                    </span>
+                    @endforeach
+                @endif
             </div>
 
             <div class="form__group">
                 <label for="inform">
                     Текст
                 </label>
-                <textarea class="inform"  name="inform" required="required">{{ isset($news) ? $news->inform : '' }}</textarea>
+                <textarea class="inform"  name="inform" required="required">{{ isset($news) ? $news->inform : old('inform') }}</textarea>
+                @if($errors->has('inform'))
+                    <span class="error">
+                    @foreach($errors->get('inform') as $error)
+                            {{ $error }}
+                    </span>
+                    @endforeach
+                @endif
             </div>
 
             <div class="form__check">

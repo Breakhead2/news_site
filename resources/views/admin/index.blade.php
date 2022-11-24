@@ -6,13 +6,13 @@
             <ul class="categories">
                 @forelse($categories as $category)
                     <li class="categories__list">
-                        <form class="tools" action="{{ route('admin.destroyCategory', $category) }}" method="post">
+                        <form class="tools" action="{{ route('admin.category.destroy', $category) }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="{{ route('admin.editCategory', $category) }}" title="Редактировать" class="tool"><i class="fa-sharp fa-solid fa-pencil"></i></a>
+                            <a href="{{ route('admin.category.edit', $category) }}" title="Редактировать" class="tool"><i class="fa-sharp fa-solid fa-pencil"></i></a>
                             <button title="Удалить" class="tool"><i class="fa-regular fa-trash-can"></i></button>
                         </form>
-                        <a class="categories__link" href="{{ route('admin.category', $category->slug) }}">{{ $category->name }}</a>
+                        <a class="categories__link" href="{{ route('admin.news.show', $category->slug) }}">{{ $category->name }}</a>
                     </li>
                 @empty
                     <li class="categories__list">

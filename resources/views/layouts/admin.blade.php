@@ -42,7 +42,7 @@
         <main>
 
             @if (session('notice'))
-                <div class="alert alert-success">
+                <div class="alert alert-<?=session('notice')['status']?>">
                     <div class="container">
                         <div class="alert-text">
                             {{ session('notice')['text'] }}

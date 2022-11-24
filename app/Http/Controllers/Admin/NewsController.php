@@ -2,37 +2,77 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
-use App\Models\News;
-use Illuminate\Http\{Request, RedirectResponse};
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNews;
+use App\Models\{Category, News};
+use Illuminate\Http\{RedirectResponse};
+
 
 class NewsController extends Controller
 {
-    public function create(Request $request, News $news)
+    public function index()
     {
-        if($request->isMethod('post'))
-        {
-//            $request->flash();
+        $news = News::query()
+            ->join('categories', 'category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name', 'categories.slug')
+            ->orderByDesc('created_at')
+            ->paginate(5);
 
-            $news->fill($request->all());
-            $news->save();
+        return view('admin.index',[
+            'title' => 'Админка',
+            'categories' => Category::all(),
+            'news' => $news
+        ]);
+    }
 
-            $category = Category::query()
-                ->select('slug')
-                ->find($news->category_id);
+    public function show($slug)
+    {
+        $news = News::query()
+            ->join('categories', 'category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name', 'categories.slug')
+            ->where('slug', '=', $slug)
+            ->orderByDesc('created_at')
+            ->paginate(5);
 
-            return redirect()
-                ->route('admin.create')
-                ->with('notice', [
-                    'text' => 'Новость успешно добавлена! ',
-                    'link' =>  route('news.show', [$category->slug, $news])
-                ]);
-        }
 
+        $category_name = Category::query()
+            ->select('name')
+            ->where('slug', '=', $slug)
+            ->first();
+
+
+        return view('admin.index', [
+            'title' => 'Новости ' . $category_name->name,
+            'categories' => Category::all(),
+            'news' => $news
+        ]);
+    }
+
+    public function create()
+    {
         return view('admin.create_news', [
             'title' => 'Публикация новости',
             'categories' => Category::all()
+            ]);
+    }
+
+    public function store(StoreNews $request, News $news)
+    {
+        $request->validated();
+
+        $news->fill($request->all());
+        $news->save();
+
+        $category = Category::query()
+            ->select('slug')
+            ->find($news->category_id);
+
+        return redirect()
+            ->route('admin.news.create')
+            ->with('notice', [
+                'status' => 'success',
+                'text' => 'Новость успешно добавлена! ',
+                'link' =>  route('news.show', [$category->slug, $news])
             ]);
     }
 
@@ -45,8 +85,10 @@ class NewsController extends Controller
             ]);
     }
 
-    public function update(Request $request, News $news): RedirectResponse
+    public function update(StoreNews $request, News $news): RedirectResponse
     {
+        $request->validated();
+
         $news->fill($request->all());
         $news->save();
 
@@ -56,26 +98,24 @@ class NewsController extends Controller
 
 
         return redirect()
-            ->route('admin.index')
+            ->route('admin.news.index')
             ->with('notice', [
+                'status' => 'success',
                 'text' => 'Новость успешно обновлена! ',
                 'link' =>  route('news.show', [$category->slug, $news])
             ]);
     }
 
-    /**
-     * @throws \Exception
-     */
-
     public function destroy(News $news): RedirectResponse
     {
-
         $news->delete();
 
         return redirect()
-            ->route('admin.index')
+            ->route('admin.news.index')
             ->with('notice', [
+                'status' => 'success',
                 'text' => 'Новость успешно удалена!'
             ]);
     }
 }
+
