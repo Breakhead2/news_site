@@ -34,6 +34,7 @@ Route::name('admin.')
         Route::get('/', [IndexController::class, 'index'])->name('index');
         Route::get('/{slug}', [IndexController::class, 'category'])->name('category');
 
+        //TODO использовать роут resource, попробовать переписать
         //CRUD BLOCK NEWS
         Route::match(['get', 'post'], '/news/create', [AdminNewsController::class, 'create'])->name('create');
         Route::get('/news/edit/{news}', [AdminNewsController::class, 'edit'])->name('edit');
