@@ -1,13 +1,17 @@
 @extends('layouts.app')
-
+@dump($article)
 @section('content')
     <div class="article__block">
         <div class="article__top">
             <div class="image__container">
-                <img src="/storage/images/{{ $article->image }}" alt="back">
+                @if($article->image == 'preview.jpg')
+                    <img src="/storage/images/articles/{{ $article->image }}" alt="preview">
+                @else
+                    <img src="/storage/images/articles/{{ $article->id }}/{{ $article->image }}" alt="preview">
+                @endif
             </div>
             <div class="under_up">
-                <p class="date_of_post">Опубликовано: <span class="date">{{ $article->date_of_public }}</span></p>
+                <p class="date_of_post">Опубликовано: <span class="date">{{ $article->created_at }}</span></p>
                 <p class="category">Категория: <a href="{{ route('news.category', $article->slug) }}" class="category_name">{{ $article->name }}</a></p>
             </div>
         </div>

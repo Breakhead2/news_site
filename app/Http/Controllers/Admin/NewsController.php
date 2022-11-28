@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNews;
 use App\Models\{Category, News};
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\{RedirectResponse};
 
 
@@ -60,8 +61,15 @@ class NewsController extends Controller
     {
         $request->validated();
 
+        if($request->file('image')){
+            $this->validate($request, ['image.*' => 'mimes:jpeg,bmp,png,jpg|max:2048']);
+        }
+
         $news->fill($request->all());
+        $news->setAttribute('image', $request->file('image')->getClientOriginalName());
         $news->save();
+
+        $request->file('image')->storeAs('public/images/articles/' . $news->id, $news->image);
 
         $category = Category::query()
             ->select('slug')
@@ -108,6 +116,7 @@ class NewsController extends Controller
 
     public function destroy(News $news): RedirectResponse
     {
+        Storage::disk('local')->deleteDirectory('public/images/articles/' . $news->id);
         $news->delete();
 
         return redirect()

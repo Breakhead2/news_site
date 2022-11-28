@@ -35,11 +35,37 @@
     text-transform: uppercase;
     color: #ffffff;
     line-height: 50px;
-    padding: 0 20px;
+    padding:0 20px;
     position: relative;
     transition: background-color linear 0.3s;
     letter-spacing: 1px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    cursor: pointer;
 }
-.menu__link:hover{
+.right_link{
+    justify-content: right;
+    //padding: 0 20px;
+    //width: auto;
+}
+.menu__link:hover {
     background-color: $hover_color;
+}
+
+.list__item{
+    position: relative;
+    width: 140px;
+}
+.list__item:hover .sublist{
+    display: flex;
+}
+.sublist{
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: $bcg_menu;
+    flex-direction: column;
+    width: 100%;
 }

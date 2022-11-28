@@ -15,11 +15,19 @@
 
         @if($item->isPrivate)
             <div class="img__container">
-                <img src="/storage/images/{{ $item->image }}" alt="preview">
+                @if($item->image == 'preview.jpg')
+                    <img src="/storage/images/articles/{{ $item->image }}" alt="preview">
+                @else
+                    <img src="/storage/images/articles/{{ $item->id }}/{{ $item->image }}" alt="preview">
+                @endif
             </div>
         @else
             <a href="{{ route('news.show', [$item->slug, $item]) }}" class="img__container">
-                <img src="/storage/images/{{ $item->image }}" alt="preview">
+                @if($item->image == 'preview.jpg')
+                    <img src="/storage/images/articles/{{ $item->image }}" alt="preview">
+                @else
+                    <img src="/storage/images/articles/{{ $item->id }}/{{ $item->image }}" alt="preview">
+                @endif
             </a>
         @endif
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="create">
-        <form action="{{ isset($news) ? route('admin.news.update', $news) : route('admin.news.store') }}" class="form__create" method="POST">
+        <form action="{{ isset($news) ? route('admin.news.update', $news) : route('admin.news.store') }}" class="form__create" method="POST" enctype="multipart/form-data">
             @csrf
             @if(isset($news)) @method('PUT') @endif
             <div class="form__group">
@@ -43,13 +43,14 @@
                 <label for="image">
                     Изображение к статье
                 </label>
-                <input type="file" name="image">
+                <input type="file" name="image" placeholder="Изображение">
                 @if($errors->has('image'))
                 <span class="error">
                     @foreach($errors->get('image') as $error)
                         {{ $error }}
                     @endforeach
                 </span>
+                @endif
             </div>
 
             <div class="form__group">
