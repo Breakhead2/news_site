@@ -40,6 +40,19 @@
             </div>
 
             <div class="form__group">
+                <label for="image">
+                    Изображение к статье
+                </label>
+                <input type="file" name="image">
+                @if($errors->has('image'))
+                <span class="error">
+                    @foreach($errors->get('image') as $error)
+                        {{ $error }}
+                    @endforeach
+                </span>
+            </div>
+
+            <div class="form__group">
                 <label for="desc">
                     Краткое описание
                 </label>
@@ -48,7 +61,7 @@
                     <span class="error">
                         @foreach($errors->get('desc') as $error)
                                 {{ $error }}
-                    @endforeach
+                        @endforeach
                      </span>
                 @endif
             </div>
