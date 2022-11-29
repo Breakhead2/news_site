@@ -9,7 +9,7 @@
             </div>
         </li>
         <li class="list__item">
-            <p href="{{ route('admin.downloadImage') }}" class="menu__link ">Скачать</p>
+            <p class="menu__link ">Скачать</p>
             <ul class="sublist">
                 <li class="list__item">
                 <a href="{{ route('admin.downloadImage') }}" class="menu__link ">Изображение</a>
@@ -20,7 +20,4 @@
             </ul>
         </li>
     </ul>
-    <div class="right">
-        <a href="{{ route('login') }}" class="menu__link right_link">Войти</a>
-    </div>
 </nav>

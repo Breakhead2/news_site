@@ -22,7 +22,10 @@
     color: #333;
     padding: 8px 16px;
     font-size: inherit;
-    background-color: $second_color;
+    background-color: $input_color;
+}
+.form__group input:focus {
+    box-shadow: 0 0 0 0.2rem rgba($heading_color, 0.25)
 }
 .form__check .form__check__input{
     margin-right: 8px;
@@ -85,4 +88,9 @@
 .error{
     padding: 5px 16px;
     background-color: $hover_color;
+}
+.forget_pas{
+    color: $bcg_menu;
+    margin-top: 5px;
+    font-size: inherit;
 }

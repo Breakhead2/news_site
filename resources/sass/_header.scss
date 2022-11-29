@@ -40,14 +40,12 @@
     transition: background-color linear 0.3s;
     letter-spacing: 1px;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 .right_link{
     justify-content: right;
-    //padding: 0 20px;
-    //width: auto;
 }
 .menu__link:hover {
     background-color: $hover_color;
@@ -60,7 +58,7 @@
 .list__item:hover .sublist{
     display: flex;
 }
-.sublist{
+.sublist {
     display: none;
     position: absolute;
     top: 50px;

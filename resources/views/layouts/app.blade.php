@@ -36,6 +36,18 @@
                     @show
                 </div>
             </header>
+            @if (session('notice'))
+                <div class="alert alert-<?=session('notice')['status']?>">
+                    <div class="container">
+                        <div class="alert-text">
+                            {{ session('notice')['text'] }}
+                            @if(isset(session('notice')['link']))
+                                <a href="{{ session('notice')['link'] }}" class="alert-link">Посмотреть можно тут. </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endif
             <main>
                 <div class="container">
                     @yield('content')
