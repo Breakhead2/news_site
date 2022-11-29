@@ -15,27 +15,14 @@ class ProfileController extends Controller
 
         if($request->isMethod('post'))
         {
-            if(is_null($request->input('new_password'))){
-                $this->validate($request, $this->validator());
-                $this->validate($request, ['password' => 'required']);
-                $this->checkUser($request, $user, 'password');
-            }else{
-                $this->validate($request, $this->validator());
-                $this->validate($request, ['new_password' => ['required','string','min:3']]);
-                $this->checkUser($request, $user, 'new_password');
-            }
-
-            $user->save();
-
-            return redirect()
-                ->route('profile')
-                ->with('notice', [
-                'status' => 'success',
-                'text' => 'Профиль успешно обнавлен!'
+            //TODO валидация, проверка на Новый пароль и на Новое фото
+            return redirect()->route('profile')->with('notice', [
+                        'status' => 'success',
+                        'text' => 'Профиль успешно обновлен!'
             ]);
         }
 
-        return view('auth.register', [
+        return view('profile', [
             'title' => 'Профиль',
             'user' => $user
         ]);
@@ -45,7 +32,7 @@ class ProfileController extends Controller
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'. Auth::id()],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'. Auth::id()]
         ];
     }
 
@@ -56,7 +43,7 @@ class ProfileController extends Controller
             $user->fill([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'password' => Hash::make($request->input($input))
+                'password' => Hash::make($request->input($input)),
             ]);
         } else {
             $errors['password'] = 'Неверно введен пароль';

@@ -306,6 +306,30 @@ h6 {
   font-size: inherit;
 }
 
+.profile {
+  margin: 100px auto;
+  max-width: 600px;
+  display: flex;
+  gap: 20px;
+}
+
+.profile .profile__container {
+  width: 180px;
+  height: 180px;
+  border: 5px solid #e6e6e6;
+}
+
+.profile .profile__container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.profile .form__container {
+  flex: 1;
+}
+
 /* section home start */
 
 .heading {
@@ -548,7 +572,7 @@ h6 {
 
 .article__block .article__top .image__container {
   width: 100%;
-  height: 175px;
+  height: 280px;
   border: 5px solid #e6e6e6;
   margin-bottom: 25px;
 }
@@ -625,6 +649,10 @@ h6 {
 .pagination li:hover,
 .pagination li.active {
   background-color: #ff2828;
+}
+
+.users__block {
+  margin: 35px auto;
 }
 
 html {

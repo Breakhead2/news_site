@@ -66,10 +66,16 @@ class NewsController extends Controller
         }
 
         $news->fill($request->all());
-        $news->setAttribute('image', $request->file('image')->getClientOriginalName());
+
+        if($request->file('image')){
+            $news->setAttribute('image', $request->file('image')->getClientOriginalName());
+        }
         $news->save();
 
-        $request->file('image')->storeAs('public/images/articles/' . $news->id, $news->image);
+        if($request->file('image')){
+            $request->file('image')->storeAs('public/images/articles/' . $news->id, $news->image);
+        }
+
 
         $category = Category::query()
             ->select('slug')
@@ -97,8 +103,21 @@ class NewsController extends Controller
     {
         $request->validated();
 
+        if($request->file('image')){
+            $this->validate($request, ['image' => 'mimes:jpeg,bmp,png,jpg|max:2048']);
+        }
+
         $news->fill($request->all());
+
+        if($request->file('image')){
+            $news->setAttribute('image', $request->file('image')->getClientOriginalName());
+        }
+
         $news->save();
+
+        if($request->file('image')){
+            $request->file('image')->storeAs('public/images/articles/' . $news->id, $news->image);
+        }
 
         $category = Category::query()
             ->select('slug')

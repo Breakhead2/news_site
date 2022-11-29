@@ -27,7 +27,6 @@ class StoreNews extends FormRequest
         return [
             'title' => 'required|min:15|max:80',
             'category_id' => "required|exists:{$category->getTable()},id",
-            //'image.*' => 'mimes:jpeg,bmp,png,jpg|max:2048',
             'desc' => 'required|min:30|max:250',
             'inform' => 'required|min:800|max:5000',
             'isPrivate' => 'sometimes|in:1'

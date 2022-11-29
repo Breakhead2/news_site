@@ -19,5 +19,8 @@
                 </li>
             </ul>
         </li>
+        <li class="list__item">
+            <a href="{{ route('admin.users') }}" class="menu__link">Пользователи</a>
+        </li>
     </ul>
 </nav>

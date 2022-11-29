@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="login">
-        <form action="{{ isset($user) ? route('profile') : route('register') }}" class="form__login" method="POST">
+        <form action="{{ route('register') }}" class="form__login" method="POST">
             @csrf
             <div class="form__group">
                 <label for="user">
                     Имя
                 </label>
-                <input autofocus="autofocus" type="text" name="name" required="required" value="{{ isset($user) ? $user->name : old('name') }}" placeholder="Имя">
+                <input autofocus="autofocus" type="text" name="name" required="required" value="{{ old('name') }}" placeholder="Имя">
                 @error('name')
                     <span class="error">
                         {{ $message }}
@@ -19,7 +19,7 @@
                 <label for="user_email">
                     E-mail
                 </label>
-                <input autofocus="autofocus" type="email" name="email" required="required" placeholder="E-mail" value="{{ isset($user) ? $user->email : old('email') }}">
+                <input autofocus="autofocus" type="email" name="email" required="required" placeholder="E-mail" value="{{ old('email') }}">
                 @error('email')
                     <span class="error">
                         {{ $message }}
@@ -28,9 +28,9 @@
             </div>
             <div class="form__group">
                 <label for="password">
-                    {{ isset($user) ? 'Текущий пароль' : 'Пароль' }}
+                    Пароль
                 </label>
-                <input type="password" name="password" required placeholder="{{ isset($user) ? 'Текущий пароль' : 'Пароль' }}">
+                <input type="password" name="password" required placeholder="Пароль">
                 @error('password')
                     <span class="error">
                         {{ $message }}
@@ -39,9 +39,9 @@
             </div>
             <div class="form__group">
                 <label for="password_confirmation">
-                    {{ isset($user) ? 'Новый пароль' : 'Подтвердите пароль' }}
+                    Подтвердите пароль
                 </label>
-                <input type="password" name="{{ isset($user) ? 'new_password' : 'password_confirmation' }}" {{ isset($user) ? '' : 'required' }} placeholder="{{ isset($user) ? 'Новый пароль' : 'Подтвердите пароль' }}" autocomplete="new-password">
+                <input type="password" name="password_confirmation" required placeholder="Подтвердите пароль" autocomplete="new-password">
                 @error('new_password')
                     <span class="error">
                             {{ $message }}
@@ -49,7 +49,7 @@
                 @enderror
             </div>
             <div class="form__submit">
-                <button type="submit" class="form__submit__btn">{{ isset($user) ? 'Обновить' : 'Регистрация' }}</button>
+                <button type="submit" class="form__submit__btn">Регистрация</button>
             </div>
         </form>
     </div>

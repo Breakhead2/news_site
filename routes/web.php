@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\{AboutController, HomeController, ProfileController};
-use App\Http\Controllers\Admin\{CategoryController, DownloadController, NewsController};
+use App\Http\Controllers\Admin\{CategoryController, DownloadController, NewsController, UsersController};
 use App\Http\Controllers\News\IndexController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\{Auth, Route};
+
 
 
 //Основные страницы сайта
@@ -24,8 +24,7 @@ Route::name('news.')
 //Админка
 Route::name('admin.')
     ->prefix('admin')
-    ->middleware('auth')
-    //TODO проверка на права админа
+    ->middleware(['auth', 'is_admin'])
     ->group(function (){
         Route::get('/download_image', [DownloadController::class, 'downloadImage'])->name('downloadImage');
         Route::match(['get', 'post'],'/download_articles', [DownloadController::class, 'downloadArticles'])->name('downloadArticles');
@@ -34,11 +33,9 @@ Route::name('admin.')
         Route::resource('news', NewsController::class);
         //crud category
         Route::resource('category', CategoryController::class)->except(['show', 'index']);
+        //users
+        Route::match(['get', 'post'], '/users', [UsersController::class, 'index'])->name('users');
     });
 
-Auth::routes();
 //Авторизация
-/*
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/register', [RegisterController::class, 'register'])->name('register');
-*/
+Auth::routes();
