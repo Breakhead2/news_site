@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@dump($article)
+
 @section('content')
     <div class="article__block">
         <div class="article__top">
