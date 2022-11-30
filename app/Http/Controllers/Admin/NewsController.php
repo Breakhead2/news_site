@@ -61,10 +61,6 @@ class NewsController extends Controller
     {
         $request->validated();
 
-        if($request->file('image')){
-            $this->validate($request, ['image.*' => 'mimes:jpeg,bmp,png,jpg|max:2048']);
-        }
-
         $news->fill($request->all());
 
         if($request->file('image')){
@@ -102,10 +98,6 @@ class NewsController extends Controller
     public function update(StoreNews $request, News $news): RedirectResponse
     {
         $request->validated();
-
-        if($request->file('image')){
-            $this->validate($request, ['image' => 'mimes:jpeg,bmp,png,jpg|max:2048']);
-        }
 
         $news->fill($request->all());
 

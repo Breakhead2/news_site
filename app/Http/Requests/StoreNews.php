@@ -29,7 +29,8 @@ class StoreNews extends FormRequest
             'category_id' => "required|exists:{$category->getTable()},id",
             'desc' => 'required|min:30|max:250',
             'inform' => 'required|min:800|max:5000',
-            'isPrivate' => 'sometimes|in:1'
+            'isPrivate' => 'sometimes|in:1',
+            'image' => 'mimes:jpeg,bmp,png,jpg|max:2048',
             ];
     }
 }
