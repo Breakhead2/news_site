@@ -4,7 +4,7 @@
     <div class="profile">
         <div class="profile__container">
             @if($user->profile_photo == 'default.png')
-                <img src="/storage/images/users/{{ $user->profile_photo }}" alt="preview">
+                <img src="/storage/images/users/{{ $user->profile_photo }}" alt="profile">
             @else
                 <img src="/storage/images/users/{{ $user->id }}/{{ $user->profile_photo }}" alt="profile">
             @endif

@@ -1,3 +1,43 @@
 .users__block{
     margin: 35px auto;
 }
+.users__box{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.user__item{
+    display: flex;
+    gap: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $bcg_color;
+}
+.user__item .user__image__container{
+    width: 120px;
+    height: 120px;
+}
+.user__item .user__image__container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.user__item .info__block{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.user__item .info__block .info__list .info__item span {
+    margin-left: 8px;
+    color: $gray;
+}
+.info__btn{
+    padding: 8px 16px;
+    font-size: inherit;
+    color: white;
+}
+.user {
+    background-color: $gray;
+}
+.admin_btn {
+    background-color: $hover_color;
+}
