@@ -15,16 +15,24 @@ class UsersController extends Controller
         {
             $user = User::query()->where('id', '=', $request->input('id'))->first();
 
-            $user->is_admin = !$user->is_admin;
+            if(Auth::id() != $user->id){
+                $user->is_admin = !$user->is_admin;
+                $user->save();
 
-            $user->save();
-
-            return redirect()
-                ->route('admin.users')
-                ->with('notice', [
-                    'status' => 'success',
-                    'text' => 'Роль успешно измена!'
-                ]);
+                return redirect()
+                    ->route('admin.users')
+                    ->with('notice', [
+                        'status' => 'success',
+                        'text' => 'Роль успешно измена!'
+                    ]);
+            }else{
+                return redirect()
+                    ->route('admin.users')
+                    ->with('notice', [
+                        'status' => 'warning',
+                        'text' => 'Нельзя поменять права у самого себя!'
+                    ]);
+            }
         }
 
         $users = User::query()

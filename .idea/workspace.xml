@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad912e53-630d-4ec1-a35e-d0a1000095c3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/user_card.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/user_card.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +207,7 @@
       <workItem from="1669830068154" duration="618000" />
       <workItem from="1669832706372" duration="1527000" />
       <workItem from="1669836723212" duration="735000" />
-      <workItem from="1669839324911" duration="393000" />
+      <workItem from="1669839324911" duration="638000" />
     </task>
     <servers />
   </component>
