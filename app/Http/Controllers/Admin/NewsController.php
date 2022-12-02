@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNews;
 use App\Models\{Category, News};
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\{RedirectResponse};
+use Illuminate\Http\{RedirectResponse, Request};
 
 
 class NewsController extends Controller
@@ -57,21 +57,9 @@ class NewsController extends Controller
             ]);
     }
 
-    public function store(StoreNews $request, News $news)
+    public function store(Request $request, News $news)
     {
-        $request->validated();
-
-        $news->fill($request->all());
-
-        if($request->file('image')){
-            $news->setAttribute('image', $request->file('image')->getClientOriginalName());
-        }
-        $news->save();
-
-        if($request->file('image')){
-            $request->file('image')->storeAs('public/images/articles/' . $news->id, $news->image);
-        }
-
+        $this->validateAndStore($request, $news);
 
         $category = Category::query()
             ->select('slug')
@@ -95,21 +83,9 @@ class NewsController extends Controller
             ]);
     }
 
-    public function update(StoreNews $request, News $news): RedirectResponse
+    public function update(Request $request, News $news): RedirectResponse
     {
-        $request->validated();
-
-        $news->fill($request->all());
-
-        if($request->file('image')){
-            $news->setAttribute('image', $request->file('image')->getClientOriginalName());
-        }
-
-        $news->save();
-
-        if($request->file('image')){
-            $request->file('image')->storeAs('public/images/articles/' . $news->id, $news->image);
-        }
+        $this->validateAndStore($request, $news);
 
         $category = Category::query()
             ->select('slug')
@@ -136,6 +112,33 @@ class NewsController extends Controller
                 'status' => 'success',
                 'text' => 'Новость успешно удалена!'
             ]);
+    }
+
+    private function ValidateRules():array
+    {
+        return [
+            'title' => 'required|min:15|max:80',
+            'desc' => 'required|min:30|max:100',
+            'inform' => 'required|min:30|max:5000',
+            'isPrivate' => 'sometimes|in:1',
+            'image' => 'mimes:jpeg,bmp,png,jpg|max:2048',
+        ];
+    }
+
+    private function validateAndStore(Request $request, News $news){
+        $this->validate($request, $this->ValidateRules());
+
+        $news->fill($request->all());
+
+        if($request->file('image')){
+            $news->setAttribute('image', $request->file('image')->getClientOriginalName());
+        }
+
+        $news->save();
+
+        if($request->file('image')){
+            $request->file('image')->storeAs('public/images/articles/' . $news->id, $news->image);
+        }
     }
 }
 

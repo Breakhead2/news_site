@@ -14,8 +14,4 @@ class Category extends Model
         return $this->hasMany(News::class, 'category_id');
     }
 
-    public static function rules()
-    {
-        return ['name' => 'required|alpha|max:10|min:4|unique:categories,name'];
-    }
 }

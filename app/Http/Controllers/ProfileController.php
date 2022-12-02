@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -65,7 +64,7 @@ class ProfileController extends Controller
     }
 
 
-    protected function validator(): array
+    private function validator(): array
     {
         return [
             'name' => ['required', 'string', 'max:255'],

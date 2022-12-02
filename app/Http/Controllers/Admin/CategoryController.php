@@ -23,7 +23,7 @@ class CategoryController extends Controller
     public function store(Request $request, Category $category): \Illuminate\Http\RedirectResponse
     {
 
-        $this->validate($request, Category::rules());
+        $this->validate($request, $this->ValidateRules());
         $data = $request->all();
 
         //Создание слага
@@ -50,7 +50,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category): \Illuminate\Http\RedirectResponse
     {
-        $this->validate($request, Category::rules());
+        $this->validate($request, $this->ValidateRules());
 
         $category->fill($request->all());
         $category->save();
@@ -72,4 +72,10 @@ class CategoryController extends Controller
             'text' => 'Категория успешно удалена'
         ]);
     }
+
+    private static function ValidateRules():array
+    {
+        return ['name' => 'required|alpha|max:10|min:4|unique:categories,name'];
+    }
+
 }
