@@ -9,7 +9,7 @@
                 <label for="news_title">
                     Заголовок
                 </label>
-                <input autofocus="autofocus" value="{{ isset($news) ? $news->title : old('title') }}" type="text" name="title" placeholder="Заголовок">
+                <input autofocus="autofocus" value="{{ old('title') ?? (isset($news) ? $news->title : '') }}" type="text" name="title" placeholder="Заголовок">
                 @if($errors->has('title'))
                     <span class="error">
                         @foreach($errors->get('title') as $error)
@@ -21,14 +21,34 @@
 
             <div class="form__group">
                 <label for="category">
+                    Источник
+                </label>
+                <select  name="resource_id" id="category">
+                    @forelse($resources as $resource)
+                        @if(old('resource_id'))
+                            <option {{old('resource_id') == $resource->id ? 'selected' : '' }} value="{{ $resource->id }}">{{ $resource->name }}</option>
+                        @else
+                            <option {{isset($news) ? ($news->resource_id == $resource->id ? 'selected' : '') : '' }} value="{{ $resource->id }}">{{ $resource->name }}</option>
+                        @endif
+                    @empty
+                        <option value="0">Нет источников</option>
+                    @endforelse
+                </select>
+                @error('resource_id')
+                <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form__group">
+                <label for="category">
                     Категория
                 </label>
                 <select  name="category_id" id="category">
                     @forelse($categories as $category)
                         @if(old('category_id'))
-                            <option {{old('category_id') == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option {{old('category_id') == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->type }}</option>
                         @else
-                            <option {{isset($news) ? $news->category_id == $category->id ? 'selected' : '' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option {{isset($news) ? $news->category_id == $category->id ? 'selected' : '' : '' }} value="{{ $category->id }}">{{ $category->type }}</option>
                         @endif
                     @empty
                         <option value="0">Нет категорий</option>
@@ -53,11 +73,11 @@
                 @endif
             </div>
 
-            <div class="form__group">
+            <div class="form__group form__group_mod">
                 <label for="desc">
                     Краткое описание
                 </label>
-                <textarea class="inform desc" name="desc">{{ isset($news) ? $news->desc : old('desc') }} </textarea>
+                <textarea class="inform desc" name="desc">{{ old('desc') ?? (isset($news) ? $news->desc : '') }} </textarea>
                 @if($errors->has('desc'))
                     <span class="error">
                         @foreach($errors->get('desc') as $error)
@@ -71,7 +91,7 @@
                 <label for="inform">
                     Текст
                 </label>
-                <textarea class="inform"  name="inform">{{ isset($news) ? $news->inform : old('inform') }}</textarea>
+                <textarea id="editor" class="inform"  name="inform">{{ old('inform') ?? (isset($news) ? $news->inform : '') }}</textarea>
                 @if($errors->has('inform'))
                     <span class="error">
                         @foreach($errors->get('inform') as $error)
@@ -79,6 +99,10 @@
                         @endforeach
                     </span>
                 @endif
+                <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+                <script>
+                    CKEDITOR.replace( 'editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+                </script>
             </div>
 
             <div class="form__check">

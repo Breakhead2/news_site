@@ -13,7 +13,7 @@ class IndexController extends Controller
    {
        $news = News::query()
            ->join('categories', 'category_id', '=', 'categories.id')
-           ->select('news.*', 'categories.name', 'categories.slug')
+           ->select('news.*', 'categories.type', 'categories.slug')
            ->orderByDesc('created_at')
            ->paginate(5);
 
@@ -28,14 +28,14 @@ class IndexController extends Controller
     {
         $news = News::query()
             ->join('categories', 'category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name', 'categories.slug')
+            ->select('news.*', 'categories.type', 'categories.slug')
             ->where('slug', '=', $slug)
             ->orderByDesc('created_at')
             ->paginate(5);
 
 
         $category_name = Category::query()
-            ->select('name')
+            ->select('type')
             ->where('slug', '=', $slug)
             ->first();
 
@@ -51,7 +51,7 @@ class IndexController extends Controller
    {
        $article = News::query()
            ->join('categories', 'category_id', '=', 'categories.id')
-           ->select('news.*', 'categories.name', 'categories.slug')
+           ->select('news.*', 'categories.type', 'categories.slug')
            ->where('news.id', '=', $news->id)
            ->first();
 

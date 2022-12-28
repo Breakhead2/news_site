@@ -14,7 +14,7 @@ class AlterTableUsersAddColumnProfilePhoto extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_photo')->default('default.png');
+            $table->string('profile_photo')->nullable();
         });
     }
 

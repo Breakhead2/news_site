@@ -11,8 +11,8 @@ class HomeController extends Controller
     {
         $last_news= News::query()
             ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name', 'categories.slug')
-            ->orderByDesc('created_at')
+            ->select('news.*', 'categories.type', 'categories.slug')
+            ->orderByDesc('date_of_pub')
             ->limit(5)
             ->get();
 

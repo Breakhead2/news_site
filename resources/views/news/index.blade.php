@@ -6,7 +6,7 @@
             <ul class="categories">
                 @forelse($categories as $category)
                     <li class="categories__list">
-                        <a class="categories__link" href="{{ route('news.category', $category->slug) }}">{{ $category->name }}</a>
+                        <a class="categories__link" href="{{ route('news.category', $category->slug) }}">{{ $category->type }}</a>
                     </li>
                 @empty
                     <li class="categories__list">
@@ -14,6 +14,10 @@
                     </li>
                 @endforelse
             </ul>
+            <div class="category__selector">
+                <p>Категории</p>
+                <i id="arrow" class="fa-sharp fa-solid fa-arrow-down"></i>
+            </div>
         </div>
         <div class="news__block">
             <div class="news__box">

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreNews;
-use App\Models\{Category, News};
-use Illuminate\Support\Facades\Storage;
+use App\Models\{Category, News, Resource};
 use Illuminate\Http\{RedirectResponse, Request};
+use Illuminate\Support\Carbon;
 
 
 class NewsController extends Controller
@@ -15,8 +14,8 @@ class NewsController extends Controller
     {
         $news = News::query()
             ->join('categories', 'category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name', 'categories.slug')
-            ->orderByDesc('news.created_at')
+            ->select('news.*', 'categories.type', 'categories.slug')
+            ->orderByDesc('news.date_of_pub')
             ->paginate(5);
 
         return view('admin.index',[
@@ -30,20 +29,20 @@ class NewsController extends Controller
     {
         $news = News::query()
             ->join('categories', 'category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name', 'categories.slug')
+            ->select('news.*', 'categories.type', 'categories.slug')
             ->where('slug', '=', $slug)
             ->orderByDesc('news.created_at')
             ->paginate(5);
 
 
         $category_name = Category::query()
-            ->select('name')
+            ->select('type')
             ->where('slug', '=', $slug)
             ->first();
 
 
         return view('admin.index', [
-            'title' => 'Новости ' . $category_name->name,
+            'title' => 'Новости ' . $category_name->type,
             'categories' => Category::all(),
             'news' => $news
         ]);
@@ -53,7 +52,8 @@ class NewsController extends Controller
     {
         return view('admin.create_news', [
             'title' => 'Публикация новости',
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'resources' => Resource::all()
             ]);
     }
 
@@ -79,7 +79,8 @@ class NewsController extends Controller
         return view('admin.create_news', [
             'title' => 'Редактирование',
             'news' => $news,
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'resources' => Resource::all()
             ]);
     }
 
@@ -101,17 +102,12 @@ class NewsController extends Controller
             ]);
     }
 
-    public function destroy(News $news): RedirectResponse
+    public function delete(Request $request)
     {
-        Storage::disk('local')->deleteDirectory('public/images/articles/' . $news->id);
+        $news = News::query()->where('id', '=', $request->id)->first();
         $news->delete();
 
-        return redirect()
-            ->route('admin.news.index')
-            ->with('notice', [
-                'status' => 'success',
-                'text' => 'Новость успешно удалена!'
-            ]);
+        return response()->json(['status' => 'ok']);
     }
 
     private function ValidateRules():array
@@ -129,6 +125,7 @@ class NewsController extends Controller
         $this->validate($request, $this->ValidateRules());
 
         $news->fill($request->all());
+        $news->setAttribute('date_of_pub', Carbon::parse(date('Y-m-d h:m:s')));
 
         if($request->file('image')){
             $news->setAttribute('image', $request->file('image')->getClientOriginalName());

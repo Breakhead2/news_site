@@ -9,7 +9,7 @@
                 <label for="password">
                     E-mail
                 </label>
-                <input type="password" name="password" required placeholder="E-mail" value="{{ old('email') }}">
+                <input type="email" name="emil" required placeholder="E-mail" value="{{ old('email') }}">
                 @error('email')
                     <span class="error">
                         {{ $message }}

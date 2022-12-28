@@ -9,16 +9,36 @@
                 <label for="category name">
                     Название категории
                 </label>
-                <input autofocus="autofocus" value="{{ old('name') ?? (isset($category) ? $category->name : '') }}" type="text" name="name" placeholder="Название категории">
+                <input autofocus="autofocus" value="{{ old('type') ?? (isset($category) ? $category->type : '') }}" type="text" name="type" placeholder="Название категории">
 
-                @if($errors->has('name'))
+                @if($errors->has('type'))
                     <span class="error">
-                        @foreach($errors->get('name') as $error)
+                        @foreach($errors->get('type') as $error)
                          {{ $error }}
                         @endforeach
                     </span>
                 @endif
 
+            </div>
+
+            <div class="form__group">
+                <label for="category">
+                    Источник
+                </label>
+                <select  name="resource_id" id="category">
+                    @forelse($resources as $resource)
+                        @if(old('resource_id'))
+                            <option {{old('resource_id') == $resource->id ? 'selected' : '' }} value="{{ $resource->id }}">{{ $resource->name }}</option>
+                        @else
+                            <option {{isset($category) ? ($category->resource_id == $resource->id ? 'selected' : '') : '' }} value="{{ $resource->id }}">{{ $resource->name }}</option>
+                        @endif
+                    @empty
+                        <option value="0">Нет источников</option>
+                    @endforelse
+                </select>
+                @error('resource_id')
+                <span class="error">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form__submit">

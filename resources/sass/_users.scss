@@ -31,13 +31,48 @@
     color: $gray;
 }
 .info__btn{
-    padding: 8px 16px;
     font-size: inherit;
     color: white;
+    width: 110px;
+    height: 36px;
 }
 .user {
     background-color: $gray;
 }
 .admin_btn {
     background-color: $hover_color;
+}
+
+/*section resources*/
+
+.resource__list_item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $bcg_menu;
+    margin-bottom: 15px;
+}
+.resource__list_item .resource_info{
+    margin-left: 20px;
+}
+.resource__list_item .resource_info p span{
+    color: $gray;
+    padding-left: 6px;
+}
+.resource_form{
+    max-width: 500px;
+    margin: 35px auto;
+    display: flex;
+    align-items: center;
+}
+.res_mod{
+    margin-top: 0;
+}
+.form__group_mod{
+    margin-right: 5px;
+    margin-bottom: 0;
+    flex:1;
+}
+.resource_block{
+    margin-bottom: 35px;
 }

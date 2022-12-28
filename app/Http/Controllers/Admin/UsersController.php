@@ -9,32 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        if($request->isMethod('post'))
-        {
-            $user = User::query()->where('id', '=', $request->input('id'))->first();
-
-            if(Auth::id() != $user->id){
-                $user->is_admin = !$user->is_admin;
-                $user->save();
-
-                return redirect()
-                    ->route('admin.users')
-                    ->with('notice', [
-                        'status' => 'success',
-                        'text' => 'Роль успешно измена!'
-                    ]);
-            }else{
-                return redirect()
-                    ->route('admin.users')
-                    ->with('notice', [
-                        'status' => 'warning',
-                        'text' => 'Нельзя поменять права у самого себя!'
-                    ]);
-            }
-        }
-
         $users = User::query()
             ->where('id', '!=', Auth::user()->id)
             ->paginate(10);
@@ -43,5 +19,16 @@ class UsersController extends Controller
             'title' => 'Пользователи',
             'users' => $users
         ]);
+    }
+
+    public function switchRole(Request $request)
+    {
+        $user = User::query()->where('id', '=', $request->id)->first();
+
+        if (Auth::id() != $user->id) {
+            $user->is_admin = !$user->is_admin;
+            $user->save();
+        }
+        return response()->json(['isAdmin'=>$user->is_admin]);
     }
 }

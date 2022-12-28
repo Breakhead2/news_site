@@ -119,9 +119,13 @@ h6 {
 
 .header .container .menu {
   margin-top: 20px;
+  background: #060608;
+  position: relative;
+}
+
+.box {
   display: flex;
   justify-content: space-between;
-  background: #060608;
 }
 
 .right,
@@ -153,6 +157,9 @@ h6 {
 
 .list__item {
   position: relative;
+}
+
+.spec__item {
   width: 140px;
 }
 
@@ -171,6 +178,112 @@ h6 {
   z-index: 1000;
 }
 
+.ava__container {
+  width: 35px;
+  height: 35px;
+  border: 2px solid white;
+  margin-right: 10px;
+}
+
+.ava__container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.user_box {
+  display: flex;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.burger-menu {
+  display: none;
+}
+
+.burger-menu i {
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 0 20px;
+  line-height: 50px;
+  position: relative;
+  letter-spacing: 1px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 30px;
+  transition: background-color linear 0.3s;
+}
+
+.burger-menu i:hover {
+  background-color: #ff2828;
+}
+
+/* section media queries for header start */
+
+@media (max-width: 768px) {
+  .header .container {
+    padding: 0 16px;
+  }
+
+  .burger-menu {
+    display: flex;
+    justify-content: end;
+  }
+
+  .box {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #060608;
+  }
+
+  .box.active {
+    display: flex;
+    z-index: 1000;
+  }
+
+  .box .left,
+  .right {
+    flex-direction: column;
+  }
+
+  .menu__link {
+    width: 100%;
+  }
+
+  .sublist {
+    top: 0;
+    left: -100%;
+  }
+}
+
+@media (max-width: 426px) {
+  .box {
+    width: 100%;
+  }
+
+  .news__box {
+    margin-top: 20px;
+  }
+
+  .sublist {
+    top: 0;
+    left: 0;
+    position: relative;
+  }
+
+  .user_box {
+    flex-direction: column;
+  }
+}
+
+/* section media queries for header end */
+
 .footer {
   background-color: #16171b;
   padding: 30px 0;
@@ -187,15 +300,32 @@ h6 {
   font-size: 20px;
 }
 
-.footer .container .creator {
+.creator {
   color: #999;
   transition: color linear 0.3s;
 }
 
-.footer .container .creator:hover {
+.creator:hover {
   color: #ff2828;
   cursor: pointer;
 }
+
+/* media queries footer start */
+
+@media (max-width: 768px) {
+  .footer .container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 426px) {
+  .footer .container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+
+/* media queries footer end */
 
 /* start section login and register styles */
 
@@ -331,6 +461,62 @@ h6 {
   flex: 1;
 }
 
+.login .soc {
+  margin-bottom: 10px;
+}
+
+.login .soc p {
+  text-align: center;
+}
+
+.login .soc .soc__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.soc .soc__box .link__item {
+  margin-right: 8px;
+  line-height: 0;
+  transition: all linear 0.3s;
+}
+
+.soc .soc__box .link__item svg #vk,
+.soc .soc__box .link__item svg #github {
+  transition: all linear 0.3s;
+}
+
+.soc .soc__box .link__item:hover #vk,
+.soc .soc__box .link__item:hover #github {
+  fill: #ff2828;
+}
+
+/* section media queries start */
+
+@media (max-width: 426px) {
+  .login {
+    margin: 50px auto;
+  }
+
+  .profile {
+    margin: 50px auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile .form__container {
+    width: 100%;
+  }
+
+  .profile .profile__container {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* section media queries end */
+
 /* section home start */
 
 .heading {
@@ -423,8 +609,8 @@ h6 {
 .article .img__container img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .article .article__info {
@@ -518,7 +704,58 @@ h6 {
   text-align: center;
 }
 
-/* section admin end */
+.aboutUs {
+  margin: 35px auto;
+  padding: 0 32px;
+}
+
+.aboutUs ul {
+  margin: 10px 0;
+}
+
+.aboutUs ul li {
+  color: #999;
+  margin-left: 15px;
+}
+
+/* media queries for card_news start */
+
+@media (max-width: 426px) {
+  .under_up {
+    flex-direction: column-reverse;
+  }
+
+  .article {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article .img__container {
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 100%;
+    height: auto;
+  }
+
+  .article__item__heading {
+    text-align: center;
+  }
+
+  .article .article__info .message,
+  .article .article__info .continue {
+    text-align: left;
+    margin-top: 15px;
+    justify-self: start;
+  }
+
+  .aboutUs {
+    padding: 0 16px;
+  }
+}
+
+/* media queries for card_news end */
 
 /* section news start */
 
@@ -529,6 +766,7 @@ h6 {
 
 .categories__block {
   width: 250px;
+  position: relative;
 }
 
 .categories {
@@ -536,8 +774,6 @@ h6 {
 }
 
 .categories__block .categories__list {
-  display: flex;
-  align-items: center;
   margin-bottom: 8px;
 }
 
@@ -551,6 +787,25 @@ h6 {
 
 .categories__block .categories .categories__list .categories__link:hover {
   color: #ff2828;
+}
+
+.category__selector {
+  color: #ffffff;
+  padding: 12px;
+  background-color: #060608;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.category__selector:hover {
+  background-color: #ff2828;
+}
+
+.category__selector p {
+  text-transform: uppercase;
+  padding-right: 12px;
 }
 
 .news__block {
@@ -620,10 +875,11 @@ h6 {
 /*section paginate start */
 
 .pagination {
-  margin-top: 15px;
+  margin: 15px 0;
   display: flex;
   justify-content: center;
   padding: 0 20px;
+  flex-wrap:wrap;
 }
 
 .pagination li {
@@ -651,6 +907,94 @@ h6 {
 .pagination li.active {
   background-color: #ff2828;
 }
+
+/* section media queries for news start */
+
+@media (max-width: 768px) {
+  .news {
+    margin: 35px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categories__block {
+    width: auto;
+  }
+
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+
+  .categories__list {
+    margin-right: 12px;
+    margin-bottom: 0;
+  }
+
+  .categories__block .categories .categories__list .categories__link {
+    padding-left: 0;
+    letter-spacing: inherit;
+    line-height: inherit;
+  }
+}
+
+@media (max-width: 426px) {
+  .category__selector {
+    display: flex;
+  }
+
+  .categories {
+    display: none;
+    position: absolute;
+    flex-wrap: nowrap;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    height: 210px;
+    overflow-y: scroll;
+    justify-content: flex-start;
+    background-color: #060608;
+  }
+
+  .categories.active {
+    display: flex;
+  }
+
+  .categories__block .categories__list {
+    margin-bottom: 0;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .categories__block .categories .categories__list .categories__link {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    background-color: #060608;
+    padding: 8px 0;
+  }
+
+  .categories__block .categories .categories__list .categories__link:hover {
+    color: #ffffff;
+    background-color: #ff2828;
+  }
+
+  .news {
+    margin: 0;
+  }
+
+  .article__item__heading {
+    margin-top: 20px;
+  }
+}
+
+/* section media queries for news end */
 
 .users__block {
   margin: 35px auto;
@@ -693,9 +1037,10 @@ h6 {
 }
 
 .info__btn {
-  padding: 8px 16px;
   font-size: inherit;
   color: white;
+  width: 110px;
+  height: 36px;
 }
 
 .user {
@@ -704,6 +1049,46 @@ h6 {
 
 .admin_btn {
   background-color: #ff2828;
+}
+
+/*section resources*/
+
+.resource__list_item {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #060608;
+  margin-bottom: 15px;
+}
+
+.resource__list_item .resource_info {
+  margin-left: 20px;
+}
+
+.resource__list_item .resource_info p span {
+  color: #999;
+  padding-left: 6px;
+}
+
+.resource_form {
+  max-width: 500px;
+  margin: 35px auto;
+  display: flex;
+  align-items: center;
+}
+
+.res_mod {
+  margin-top: 0;
+}
+
+.form__group_mod {
+  margin-right: 5px;
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.resource_block {
+  margin-bottom: 35px;
 }
 
 html {
@@ -730,5 +1115,11 @@ body {
   max-width: 1044px;
   margin: 0 auto;
   padding: 0 32px;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 16px;
+  }
 }
 

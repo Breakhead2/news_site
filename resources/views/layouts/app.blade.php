@@ -15,6 +15,9 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;700&display=swap" rel="stylesheet">
 
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
     <!-- Favicon -->
     <link type="Image/x-icon" href="/icon.ico" rel="icon">
 

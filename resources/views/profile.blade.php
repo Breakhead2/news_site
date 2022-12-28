@@ -3,10 +3,12 @@
 @section('content')
     <div class="profile">
         <div class="profile__container">
-            @if($user->profile_photo == 'default.png')
-                <img src="/storage/images/users/{{ $user->profile_photo }}" alt="profile">
-            @else
+            @if($user->profile_photo)
                 <img src="/storage/images/users/{{ $user->id }}/{{ $user->profile_photo }}" alt="profile">
+            @elseif($user->profile_photo_url)
+                <img src="{{ $user->profile_photo_url }}" alt="profile">
+            @else
+                <img src="{{ asset('storage/images/users/default.png') }}" alt="profile">
             @endif
         </div>
         <div class="form__container">
@@ -16,7 +18,7 @@
                     <label for="user">
                         Имя
                     </label>
-                    <input autofocus="autofocus" type="text" name="name" required="required" value="{{ isset($user) ? $user->name : old('name') }}" placeholder="Имя">
+                    <input autofocus="autofocus" type="text" name="name" required="required" value="{{ old('name') ?? (isset($user) ? $user->name : '') }}" placeholder="Имя">
                     @error('name')
                     <span class="error">
                         {{ $message }}
@@ -27,7 +29,7 @@
                     <label for="user_email">
                         E-mail
                     </label>
-                    <input autofocus="autofocus" type="email" name="email" required="required" placeholder="E-mail" value="{{ isset($user) ? $user->email : old('email') }}">
+                    <input type="email" name="email" placeholder="E-mail" value="{{ old('email') ?? (isset($user) ? $user->email : '') }}">
                     @error('email')
                     <span class="error">
                         {{ $message }}

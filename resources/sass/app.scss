@@ -12,9 +12,6 @@
 @import "news";
 @import "users";
 
-// Bootstrap
-//@import '~bootstrap/scss/bootstrap';
-
 html {
     font-family: $font-family-sans-serif, sans-serif;
     line-height: 1.15;
@@ -39,4 +36,10 @@ body {
     max-width: 1044px;
     margin: 0 auto;
     padding: 0 32px;
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding: 0 16px;
+    }
 }

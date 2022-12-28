@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
 {
+    /**
+     * @throws ValidationException
+     */
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -15,7 +19,7 @@ class ProfileController extends Controller
 
         if($request->isMethod('post'))
         {
-            $this->validate($request, $this->validator());
+            $this->validate($request, $this->validateRules());
 
             if(Hash::check($request->post('password'), $user->password))
             {
@@ -51,6 +55,7 @@ class ProfileController extends Controller
                     ]);
             } else {
                 $errors['password'] = 'Введен неверный пароль';
+                $request->flash();
                 return redirect()
                     ->route('profile')
                     ->withErrors($errors);
@@ -64,11 +69,11 @@ class ProfileController extends Controller
     }
 
 
-    private function validator(): array
+    private function validateRules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'. Auth::id()],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'. Auth::id(),
             'password' => 'required',
             'new_password' => 'nullable|min:3',
             'profile_photo' => 'mimes:jpeg,bmp,png,jpg|max:2048',

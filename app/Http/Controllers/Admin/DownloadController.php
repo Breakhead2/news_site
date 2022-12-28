@@ -28,7 +28,7 @@ class DownloadController extends Controller
             $category_id = $request->input('category_id');
 
             $categoryName = Category::query()
-                ->select('name')
+                ->select('slug')
                 ->where('categories.id', '=', $category_id)
                 ->first();
 
@@ -38,7 +38,7 @@ class DownloadController extends Controller
                 ->where('categories.id', '=', $category_id)
                 ->get();
 
-           return $this->download($data, $categoryName->name);
+           return $this->download($data, $categoryName->slug);
         }
 
         return view('admin.downloadArticles', [

@@ -113,3 +113,54 @@
 .profile .form__container{
     flex: 1;
 }
+.login .soc{
+    margin-bottom: 10px;
+}
+.login .soc p{
+    text-align: center;
+}
+.login .soc .soc__box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.soc .soc__box .link__item{
+    margin-right: 8px;
+    line-height: 0;
+    transition: all linear 0.3s;
+}
+.soc .soc__box .link__item svg #vk,
+.soc .soc__box .link__item svg #github
+{
+    transition: all linear 0.3s;
+}
+.soc .soc__box .link__item:hover #vk,
+.soc .soc__box .link__item:hover #github
+{
+    fill: $hover_color;
+}
+
+
+/* section media queries start */
+
+@media (max-width: 426px) {
+    .login{
+        margin: 50px auto;
+    }
+    .profile{
+        margin: 50px auto;
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile .form__container{
+        width: 100%;
+    }
+    .profile .profile__container{
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* section media queries end */

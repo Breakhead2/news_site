@@ -11,11 +11,28 @@
 .footer .container .copy{
     font-size: 20px;
 }
-.footer .container .creator{
+.creator{
     color: #999;
     transition: color linear 0.3s;
 }
-.footer .container .creator:hover{
+.creator:hover{
     color: $hover_color;
     cursor: pointer;
 }
+
+/* media queries footer start */
+
+@media (max-width: 768px) {
+    .footer .container{
+        padding: 0 16px;
+    }
+}
+
+@media (max-width: 426px) {
+    .footer .container{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+
+/* media queries footer end */

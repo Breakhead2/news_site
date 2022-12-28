@@ -75,7 +75,7 @@
 .article .img__container img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .article .article__info{
     display: grid;
@@ -155,4 +155,48 @@
     text-align: center;
 }
 
-/* section admin end */
+.aboutUs {
+    margin:35px auto;
+    padding: 0 32px;
+}
+.aboutUs ul {
+    margin: 10px 0;
+}
+.aboutUs ul li {
+    color: $gray;
+    margin-left: 15px;
+}
+
+/* media queries for card_news start */
+@media (max-width:426px) {
+    .under_up{
+        flex-direction: column-reverse;
+    }
+    .article {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .article .img__container{
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 100%;
+        height: auto;
+    }
+    .article__item__heading{
+        text-align: center;
+    }
+    .article .article__info .message,
+    .article .article__info .continue{
+        text-align: left;
+        margin-top: 15px;
+        justify-self: start;
+    }
+    .aboutUs {
+        padding: 0 16px;
+    }
+}
+
+
+/* media queries for card_news end */

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -13,7 +14,10 @@ class CategoryController extends Controller
 {
     public function create()
     {
-        return view('admin.create_category', ['title' => 'Создать категорию']);
+        return view('admin.create_category', [
+            'title' => 'Создать категорию',
+            'resources' => Resource::all()
+        ]);
     }
 
     /**
@@ -22,12 +26,11 @@ class CategoryController extends Controller
 
     public function store(Request $request, Category $category): \Illuminate\Http\RedirectResponse
     {
-
-        $this->validate($request, $this->ValidateRules());
+        $this->validate($request, $this->validateRules());
         $data = $request->all();
 
         //Создание слага
-        $data['slug'] = Str::slug($request->name);
+        $data['slug'] = Str::slug($request->type);
 
         $category->fill($data);
         $category->save();
@@ -44,13 +47,14 @@ class CategoryController extends Controller
     {
         return view('admin.create_category', [
             'title' => 'Редактировать категорию',
-            'category' => $category
+            'category' => $category,
+            'resources' => Resource::all()
         ]);
     }
 
     public function update(Request $request, Category $category): \Illuminate\Http\RedirectResponse
     {
-        $this->validate($request, $this->ValidateRules());
+        $this->validate($request, $this->validateRules());
 
         $category->fill($request->all());
         $category->save();
@@ -63,19 +67,21 @@ class CategoryController extends Controller
             ]);
     }
 
-    public function destroy(Category $category): \Illuminate\Http\RedirectResponse
+    public function destroy(Category $category)
     {
         $category->delete();
 
-        return redirect()->route('admin.news.index')->with('notice', [
-            'status' => 'success',
-            'text' => 'Категория успешно удалена'
-        ]);
+        return redirect()
+            ->route('admin.news.index')
+            ->with('notice', [
+                'status' => 'success',
+                'text' => 'Категория успешно удалена!'
+            ]);
     }
 
-    private static function ValidateRules():array
+    private static function validateRules():array
     {
-        return ['name' => 'required|alpha|max:10|min:4|unique:categories,name'];
+        return ['type' => 'required|max:30|min:4|unique:categories,type'];
     }
 
 }
